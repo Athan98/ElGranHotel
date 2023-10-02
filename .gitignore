@@ -22,3 +22,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+./nbproyect/private
+*.properties
+
+# Forzar las libs 
+!jcalendar-1.4.jar
+!jgoodies-common-1.2.0.jar
+!jgoodies-looks-2.4.1.jar
+!junit-4.6.jar
+!mariadb-java-client-3.0.11.jar

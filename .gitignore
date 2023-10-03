@@ -23,7 +23,8 @@
 hs_err_pid*
 replay_pid*
 
-
+./nbproject/private
+*.properties
 
 # Forzar las libs 
 !jcalendar-1.4.jar

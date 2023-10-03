@@ -1,4 +1,3 @@
-
 package data;
 
 import entidades.*;
@@ -13,16 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class Huesped_data {
-    
+
     private Connection conexion = null;
-    private Huesped h=new Huesped();
+    private Huesped h = new Huesped();
 
     public Huesped_data(Conexion con) {
         this.conexion = con.buscarConexion();
     }
-    
+
     public void agregarHuesped(Huesped huesped) {
 
         String sql = "INSERT INTO huesped(dni,apellido,nombre,telefono,correo,direccion,estado) VALUES (?,?,?,?,?,?,?)";
@@ -49,7 +47,7 @@ public class Huesped_data {
             JOptionPane.showMessageDialog(null, "Error de sentencia");
         }
     }
-    
+
     public List listarHuespedesPorApellido(String apellido) {
         List<Huesped> huespedes = new ArrayList<>();
         String sql = "SELECT * FROM huesped WHERE apellido LIKE ?";
@@ -58,7 +56,7 @@ public class Huesped_data {
             ps.setString(1, apellido + "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                
+
                 h.setIdHuesped(rs.getInt("idHuesped"));
                 h.setDni(rs.getInt("dni"));
                 h.setApellido(rs.getString("apellido"));
@@ -125,17 +123,19 @@ public class Huesped_data {
         return h;
     }
 
-    public void modificarHuesped(int dni, String apellido, String nombre, LocalDate fechaNac, boolean estado) {
-        String sql = "UPDATE huesped SET apellido=?,nombre=?,fechaNac=?,estado=? WHERE dni=?";
+    public void modificarHuesped(int dni, String apellido, String nombre, int telefono, String correo, String direccion, boolean estado) {
+        String sql = "UPDATE huesped SET apellido=?,nombre=?,telefono=?,correo=?,direccion=?,estado=? WHERE dni=?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            
+
             ps.setString(1, apellido);
             ps.setString(2, nombre);
-            ps.setDate(3, Date.valueOf(fechaNac));
-            ps.setBoolean(4, estado);
-            ps.setInt(5, dni);
+            ps.setInt(3, telefono);
+            ps.setString(4, correo);
+            ps.setString(5, direccion);
+            ps.setBoolean(6, estado);
+            ps.setInt(7, dni);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Los datos del huesped han sido actualizados");
             ps.close();
@@ -144,20 +144,20 @@ public class Huesped_data {
         }
 
     }
-    
-    public void eliminarHuesped(int dni){
-    
-        String sql="DELETE FROM huesped WHERE dni=?";
-        
+
+    public void eliminarHuesped(int dni) {
+
+        String sql = "DELETE FROM huesped WHERE dni=?";
+
         try {
-            PreparedStatement ps=conexion.prepareStatement(sql);
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, dni);
             ps.executeUpdate();
-            
+
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de sentencia");
         }
-        
+
     }
 }

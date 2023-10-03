@@ -35,3 +35,5 @@ private.properties
 !jgoodies-looks-2.4.1.jar
 !junit-4.6.jar
 !mariadb-java-client-3.0.11.jar
+!/elGranHotel/dist/
+!/elGranHotel/build/

@@ -1,0 +1,110 @@
+package data;
+
+import entidades.*;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+public class Reserva_data {
+
+    private Connection con = null;
+    private ReservaHuesped r = new ReservaHuesped();
+    private Huesped huesped = new Huesped();
+    private Habitacion hab = new Habitacion();
+
+    public Reserva_data(Conexion c) {
+        this.con = c.buscarConexion();
+    }
+
+    public void hacerReserva(Huesped h, Habitacion hab, LocalDate ingreso, LocalDate egreso, int personas) {
+
+        String sql = "INSERT INTO reserva (idHuesped, idHabitacion, fechaIngreso, fechaSalida, monto, estado) VALUES (?,?,?,?,?,?)";
+
+        long dias = egreso.toEpochDay() - ingreso.toEpochDay();
+        double precioXnoche = dias * hab.getTipoHab().getPrecioPorNoche();
+
+        if (!hab.isOcupada()) {
+            try {
+                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, h.getIdHuesped());
+                ps.setInt(2, hab.getIdHabitacion());
+                ps.setDate(3, Date.valueOf(ingreso));
+                ps.setDate(4, Date.valueOf(egreso));
+                ps.setDouble(5, precioXnoche);
+                ps.setBoolean(6, true);
+                
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                r.setIdReserva(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "La reserva se realizó correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al obtener el ID");
+            }
+            ps.close();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error de sentencia.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "La Habitacion está ocupada.");
+        }
+
+    }
+    
+    public List buscarReservaPorHuesped (int dni) {
+        List<ReservaHuesped> reservas = new ArrayList();
+        
+        String sql = "SELECT * FROM reserva r JOIN huesped h ON(r.idHuesped=h.idHuesped) JOIN habitacion hab ON (r.idHabitacion=hab.idHabitacion) JOIN tipohabitacion tp ON(hab.idTipoHabitacion = tp.idTipoHabitacion) WHERE h.dni=?";                               
+         
+        try{
+             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+             ps.setInt(1, dni);
+             ResultSet rs = ps.executeQuery();
+             
+             while(rs.next()){
+                
+                 r.setIdReserva(rs.getInt("idReserva"));
+                 
+                 huesped.setApellido(rs.getString("apellido"));
+                 huesped.setNombre(rs.getString("nombre"));
+                 huesped.setCorreo(rs.getString("correo"));
+                 huesped.setDireccion(rs.getString("direccion"));
+                 huesped.setDni(dni);
+                 huesped.setTelefono(rs.getInt("telefono"));
+                 huesped.setIdHuesped(rs.getInt("idHuesped"));
+                 r.setIdHuesped(huesped);
+                 
+                 hab.setIdHabitacion(rs.getInt("idHabitacion"));
+                 hab.setNroHabitacion(rs.getInt("nroHabitacion"));
+                 hab.setPiso(rs.getInt("piso"));
+                 hab.setOcupada(rs.getBoolean("ocupada"));
+                 
+                 
+                 r.setIdHabitacion(hab);
+                 
+                 
+                 
+                 r.setFechaIngreso(rs.getDate("fechaIngreso").toLocalDate());
+                 r.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
+                 r.setMonto(rs.getDouble("monto"));
+                 r.setEstado(rs.getBoolean("estado"));
+             }
+             
+             
+        }catch (SQLException e){
+            
+        }
+       
+        return reservas;
+    }
+}

@@ -5,24 +5,22 @@ package entidades;
 public class TipoHabitacion {
     
     private int idTipoHabitacion=-1;
+    private String tipo;
     private int cantidadCamas;
     private int cantidadPersonas;
     private String tipoCamas;
     private double precioPorNoche;
 
-    public TipoHabitacion(int idTipoHabitacion, int cantidadCamas, int cantidadPersonas, String tipoCamas, double precioPorNoche) {
-        this.idTipoHabitacion = idTipoHabitacion;
+    public TipoHabitacion(String tipo, int cantidadCamas, int cantidadPersonas, String tipoCamas, double precioPorNoche) {
+        this.tipo = tipo;
         this.cantidadCamas = cantidadCamas;
         this.cantidadPersonas = cantidadPersonas;
         this.tipoCamas = tipoCamas;
         this.precioPorNoche = precioPorNoche;
     }
 
-    public TipoHabitacion(int cantidadCamas, int cantidadPersonas, String tipoCamas, double precioPorNoche) {
-        this.cantidadCamas = cantidadCamas;
-        this.cantidadPersonas = cantidadPersonas;
-        this.tipoCamas = tipoCamas;
-        this.precioPorNoche = precioPorNoche;
+    public TipoHabitacion(String tipo) {
+        this.tipo = tipo;
     }
 
     public TipoHabitacion() {
@@ -36,6 +34,15 @@ public class TipoHabitacion {
     public void setIdTipoHabitacion(int idTipoHabitacion) {
         this.idTipoHabitacion = idTipoHabitacion;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
 
     public int getCantidadCamas() {
         return cantidadCamas;
@@ -71,8 +78,10 @@ public class TipoHabitacion {
 
     @Override
     public String toString() {
-        return "TipoHabitacion{" + "idTipoHabitacion=" + idTipoHabitacion + ", cantidadCamas=" + cantidadCamas + ", cantidadPersonas=" + cantidadPersonas + ", tipoCamas=" + tipoCamas + ", precioPorNoche=" + precioPorNoche + '}';
+        return "TipoHabitacion{" + "idTipoHabitacion=" + idTipoHabitacion + ", tipo=" + tipo + ", cantidadCamas=" + cantidadCamas + ", cantidadPersonas=" + cantidadPersonas + ", tipoCamas=" + tipoCamas + ", precioPorNoche=" + precioPorNoche + '}';
     }
+    
+        
     
     
 }

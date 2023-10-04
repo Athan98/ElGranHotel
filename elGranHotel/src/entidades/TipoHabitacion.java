@@ -11,7 +11,7 @@ public class TipoHabitacion {
     private String tipoCamas;
     private double precioPorNoche;
 
-    public TipoHabitacion(String tipo, int cantidadCamas, int cantidadPersonas, String tipoCamas, double precioPorNoche) {
+    public TipoHabitacion(String tipo, int cantidadPersonas, int cantidadCamas, String tipoCamas, double precioPorNoche) {
         this.tipo = tipo;
         this.cantidadCamas = cantidadCamas;
         this.cantidadPersonas = cantidadPersonas;
@@ -19,7 +19,7 @@ public class TipoHabitacion {
         this.precioPorNoche = precioPorNoche;
     }
 
-    public TipoHabitacion(int idTipoHabitacion, String tipo, int cantidadCamas, int cantidadPersonas, String tipoCamas, double precioPorNoche) {
+    public TipoHabitacion(int idTipoHabitacion, String tipo, int cantidadPersonas, int cantidadCamas, String tipoCamas, double precioPorNoche) {
         this.idTipoHabitacion = idTipoHabitacion;
         this.tipo = tipo;
         this.cantidadCamas = cantidadCamas;
@@ -85,6 +85,8 @@ public class TipoHabitacion {
     public String toString() {
         return "TipoHabitacion{" + "idTipoHabitacion=" + idTipoHabitacion + ", tipo=" + tipo + ", cantidadCamas=" + cantidadCamas + ", cantidadPersonas=" + cantidadPersonas + ", tipoCamas=" + tipoCamas + ", precioPorNoche=" + precioPorNoche + '}';
     }
+
+    
     
         
     

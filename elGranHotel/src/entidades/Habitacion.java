@@ -53,14 +53,15 @@ public class Habitacion {
         this.piso = piso;
     }
 
-    public TipoHabitacion getTipoHab() {
+    public TipoHabitacion getIdTipoHabitacion() {
         return idTipoHabitacion;
     }
 
-    public void setTipoHab(TipoHabitacion idTipoHabitacion) {
+    public void setIdTipoHabitacion(TipoHabitacion idTipoHabitacion) {
         this.idTipoHabitacion = idTipoHabitacion;
     }
 
+    
     public boolean isOcupada() {
         return ocupada;
     }
@@ -71,7 +72,7 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", nroHabitacion=" + nroHabitacion + ", piso=" + piso + ", idTipoHabitacion=" + idTipoHabitacion.getTipo() + ", ocupada=" + ocupada + '}';
+        return "Habitacion{ id:" + idHabitacion + ", nro:" + nroHabitacion + ", piso:" + piso + ", TipoHabitacion:" + idTipoHabitacion.getTipo() + ", ocupada=" + ocupada + '}';
     }
     
     

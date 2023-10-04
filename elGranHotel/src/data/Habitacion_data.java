@@ -33,15 +33,18 @@ public class Habitacion_data {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                h = new Habitacion();
                 h.setIdHabitacion(rs.getInt("idHabitacion"));
                 h.setNroHabitacion(rs.getInt("nroHabitacion"));
-                h.setNroHabitacion(rs.getInt("piso"));
+                h.setPiso(rs.getInt("piso"));
                 h.setOcupada(rs.getBoolean("ocupada"));
-                h.setTipoHab(th);
-                th.setCantidadCamas(rs.getInt("cantidadCamas"));
+                th.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
+                th.setTipo(rs.getString("tipo"));
                 th.setCantidadPersonas(rs.getInt("cantidadPersonas"));
+                th.setCantidadCamas(rs.getInt("cantidadCamas"));
                 th.setTipoCamas(rs.getString("tipoCamas"));
                 th.setPrecioPorNoche(rs.getDouble("precioPorNoche"));
+                h.setIdTipoHabitacion(th);
                 habitacionList.add(h);
             }
             ps.close();
@@ -89,10 +92,16 @@ public class Habitacion_data {
             ps.setInt(2, piso);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){                
-                h.setIdHabitacion(rs.getInt("idHabitacion"));
+                h.setIdHabitacion(rs.getInt("idHabitacion"));                
                 h.setNroHabitacion(rs.getInt("nroHabitacion"));
                 h.setPiso(rs.getInt("piso"));                
-                h.setOcupada(rs.getBoolean("ocupada"));
+                h.setOcupada(rs.getBoolean("ocupada"));                
+                th.setTipo(rs.getString("tipo"));
+                th.setCantidadCamas(rs.getInt("cantidadCamas"));
+                th.setCantidadPersonas(rs.getInt("cantidadPersonas"));
+                th.setTipoCamas(rs.getString("tipoCamas"));
+                th.setPrecioPorNoche(rs.getDouble("precioPorNoche"));
+                h.setIdTipoHabitacion(th);
             }
             ps.close();
         } catch (SQLException ex) {

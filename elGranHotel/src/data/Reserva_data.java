@@ -20,6 +20,7 @@ public class Reserva_data {
     private ReservaHuesped r = new ReservaHuesped();
     private Huesped huesped = new Huesped();
     private Habitacion hab = new Habitacion();
+    private TipoHabitacion tipo = new TipoHabitacion();
 
     public Reserva_data(Conexion c) {
         this.con = c.buscarConexion();
@@ -30,7 +31,7 @@ public class Reserva_data {
         String sql = "INSERT INTO reserva (idHuesped, idHabitacion, fechaIngreso, fechaSalida, monto, estado) VALUES (?,?,?,?,?,?)";
 
         long dias = egreso.toEpochDay() - ingreso.toEpochDay();
-        double precioXnoche = dias * hab.getTipoHab().getPrecioPorNoche();
+        double precioXnoche = dias * hab.getIdTipoHabitacion().getPrecioPorNoche();
 
         if (!hab.isOcupada()) {
             try {
@@ -88,21 +89,27 @@ public class Reserva_data {
                  hab.setNroHabitacion(rs.getInt("nroHabitacion"));
                  hab.setPiso(rs.getInt("piso"));
                  hab.setOcupada(rs.getBoolean("ocupada"));
-                 
-                 
+                 tipo.setCantidadCamas(rs.getInt("cantidadCamas"));
+                 tipo.setCantidadPersonas(rs.getInt("cantidadPersonas"));
+                 tipo.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
+                 tipo.setPrecioPorNoche(rs.getDouble("precioPorNoche"));
+                 tipo.setTipo(rs.getString("Tipo"));
+                 tipo.setTipoCamas(rs.getString("tipoCamas"));
+                 hab.setIdTipoHabitacion(tipo);
                  r.setIdHabitacion(hab);
-                 
-                 
-                 
+              
                  r.setFechaIngreso(rs.getDate("fechaIngreso").toLocalDate());
                  r.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
                  r.setMonto(rs.getDouble("monto"));
                  r.setEstado(rs.getBoolean("estado"));
+                 
+                 reservas.add(r);
              }
+             ps.close();
              
              
         }catch (SQLException e){
-            
+            JOptionPane.showMessageDialog(null,"Error de sentencia SQL");
         }
        
         return reservas;

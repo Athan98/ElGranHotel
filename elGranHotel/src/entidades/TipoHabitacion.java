@@ -4,7 +4,7 @@ package entidades;
 
 public class TipoHabitacion {
     
-    private int idTipoHabitacion=-1;
+    private int idTipoHabitacion = -1;
     private String tipo;
     private int cantidadCamas;
     private int cantidadPersonas;
@@ -19,12 +19,17 @@ public class TipoHabitacion {
         this.precioPorNoche = precioPorNoche;
     }
 
-    public TipoHabitacion(String tipo) {
+    public TipoHabitacion(int idTipoHabitacion, String tipo, int cantidadCamas, int cantidadPersonas, String tipoCamas, double precioPorNoche) {
+        this.idTipoHabitacion = idTipoHabitacion;
         this.tipo = tipo;
+        this.cantidadCamas = cantidadCamas;
+        this.cantidadPersonas = cantidadPersonas;
+        this.tipoCamas = tipoCamas;
+        this.precioPorNoche = precioPorNoche;
     }
 
     public TipoHabitacion() {
-        this.idTipoHabitacion=-1;
+        this.idTipoHabitacion = -1;
     }
 
     public int getIdTipoHabitacion() {

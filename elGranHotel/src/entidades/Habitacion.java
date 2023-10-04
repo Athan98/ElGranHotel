@@ -4,26 +4,26 @@ package entidades;
 
 public class Habitacion {
     
-    private int idHabitacion=-1;
+    private int idHabitacion = -1;
+    private TipoHabitacion idTipoHabitacion;
     private int nroHabitacion;
     private int piso;
-    private TipoHabitacion tipoHab;
     private boolean ocupada;
 
-    public Habitacion(int idHabitacion, int nroHabitacion, int piso, TipoHabitacion tipoHab, boolean ocupada) {
+    public Habitacion(int idHabitacion, TipoHabitacion idTipoHabitacion, int nroHabitacion, int piso, boolean ocupada) {
         this.idHabitacion = idHabitacion;
+        this.idTipoHabitacion = idTipoHabitacion;
         this.nroHabitacion = nroHabitacion;
         this.piso = piso;
-        this.tipoHab = tipoHab;
         this.ocupada = ocupada;
     }
 
-    public Habitacion(int nroHabitacion, int piso, TipoHabitacion tipoHab, boolean ocupada) {
+    public Habitacion(TipoHabitacion idTipoHabitacion, int nroHabitacion, int piso, boolean ocupada) {
+        this.idTipoHabitacion = idTipoHabitacion;
         this.nroHabitacion = nroHabitacion;
         this.piso = piso;
-        this.tipoHab = tipoHab;
         this.ocupada = ocupada;
-    }
+    }    
 
     public Habitacion() {
         this.idHabitacion=-1;
@@ -54,11 +54,11 @@ public class Habitacion {
     }
 
     public TipoHabitacion getTipoHab() {
-        return tipoHab;
+        return idTipoHabitacion;
     }
 
-    public void setTipoHab(TipoHabitacion tipoHab) {
-        this.tipoHab = tipoHab;
+    public void setTipoHab(TipoHabitacion idTipoHabitacion) {
+        this.idTipoHabitacion = idTipoHabitacion;
     }
 
     public boolean isOcupada() {
@@ -71,7 +71,7 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", nroHabitacion=" + nroHabitacion + ", piso=" + piso + ", tipoHab=" + tipoHab + ", ocupada=" + ocupada + '}';
+        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", nroHabitacion=" + nroHabitacion + ", piso=" + piso + ", idTipoHabitacion=" + idTipoHabitacion.getTipo() + ", ocupada=" + ocupada + '}';
     }
     
     

@@ -49,11 +49,10 @@ public class Habitacion_data {
             JOptionPane.showMessageDialog(null, "Error de sentencia");
         }
 
-        return habitacionList;
-        
+        return habitacionList;       
         
      
-    }    
+    }
     
     
     public void agregarHabitacion(TipoHabitacion tipo, int nro, int piso, boolean ocupada){
@@ -85,7 +84,7 @@ public class Habitacion_data {
         String sql = "SELECT * FROM habitacion h JOIN tipoHabitacion th ON (h.idTipoHabitacion = th.idTipoHabitacion) WHERE nroHabitacion = ? AND piso = ?";
         
         try {
-            PreparedStatement ps=conexion.prepareStatement(sql);
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, nro);
             ps.setInt(2, piso);
             ResultSet rs = ps.executeQuery();
@@ -102,15 +101,16 @@ public class Habitacion_data {
         return h;
     }
     
-    public void modificarHabitacion(String nombreHabitacion, int anio, boolean estado){
-        String sql="UPDATE habitacion SET anio=?,estado=? WHERE nombreHabitacion LIKE ?";
-
+    public void modificarHabitacion(TipoHabitacion tipo, int nro, int piso, boolean ocupada){
+        
+        String sql="UPDATE habitacion SET idTipoHabitacion=?, ocupada=? WHERE nroHabitacion=? AND piso=?";
         
         try {
-            PreparedStatement ps=conexion.prepareStatement(sql);            
-            ps.setInt(1, anio);
-            ps.setBoolean(2, estado);
-            ps.setString(3, nombreHabitacion);
+            PreparedStatement ps = conexion.prepareStatement(sql);            
+            ps.setInt(1, tipo.getIdTipoHabitacion());
+            ps.setBoolean(2, ocupada);
+            ps.setInt(3, nro);
+            ps.setInt(4, piso);            
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "La habitacion ha sido actualizada");
             ps.close();
@@ -119,30 +119,31 @@ public class Habitacion_data {
         }    
     }
 
-    public void modificarEstado(String nombreHabitacion, boolean estado){
-        String sql="UPDATE habitacion SET estado=? WHERE nombreHabitacion LIKE ?";
+    public void modificarDisponibilidad(int nro, int piso, boolean ocupada){
+        
+        String sql="UPDATE habitacion SET ocupada=? WHERE nroHabitacion=? AND piso=?";
         
         try {
-            PreparedStatement ps=conexion.prepareStatement(sql);
-            ps.setBoolean(1, false);
-            ps.setString(2, nombreHabitacion);
-
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setBoolean(1, ocupada);
+            ps.setInt(2, nro);
+            ps.setInt(3, piso);
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "El estado de la habitacion ha sido actualizada");
+            JOptionPane.showMessageDialog(null, "El estado de la habitacion ha sido actualizado");
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de sentencia");
         }
     }
     
-    public void eliminarHabitacion(String nombre){
-    
+    public void eliminarHabitacion(int nro, int piso){    
 
-        String sql="DELETE FROM habitacion WHERE nombreHabitacion LIKE ?";
+        String sql="DELETE FROM habitacion WHERE nroHabitacion=? AND piso=?";
         
         try {
             PreparedStatement ps=conexion.prepareStatement(sql);
-            ps.setString(1, nombre);
+            ps.setInt(1, nro);
+            ps.setInt(2, piso);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "La habitacion ha sido eliminada");
             ps.close();

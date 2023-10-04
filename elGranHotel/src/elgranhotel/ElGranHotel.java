@@ -1,8 +1,12 @@
 
 package elgranhotel;
 
+
 import data.*;
 import entidades.*;
+import java.time.LocalDate;
+import java.time.Month;
+
 
 
 public class ElGranHotel {
@@ -10,11 +14,28 @@ public class ElGranHotel {
     
     public static void main(String[] args) {
         
-        Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel","root","");
-        Huesped_data hd = new Huesped_data(con);
+
+        
+        Conexion con=new Conexion("jdbc:mariadb://localhost:3306/elgranhotel","root","");
         Habitacion_data habd = new Habitacion_data(con);
-        Huesped h = new Huesped();
-        Habitacion hab = new Habitacion();
+      
+
+        
+        Huesped_data hd=new Huesped_data(con);
+        Huesped h=new Huesped(23522666, "Ramirez", "Pedrin", 221456456, "rama@hot.com", "PedroPico 21", true);
+        TipoHabitacion th = new TipoHabitacion("Simple", 1, 1, "Simple", 20000);
+        
+        Habitacion hab = new Habitacion(1,th,23, 1, false); 
+        Habitacion hab2 = new Habitacion(2, th,24 , 1, false);
+       
+                
+         h.setIdHuesped(2);
+        
+//        hd.agregarHuesped(h);
+        
+        Reserva_data rd = new Reserva_data(con);
+        rd.hacerReserva(h, hab2, LocalDate.of(2023, Month.SEPTEMBER, 20), LocalDate.of(2023, Month.OCTOBER, 1), 1);
+
         
         
        

@@ -30,7 +30,7 @@ public class Huesped_data {
             ps.setInt(1, huesped.getDni());
             ps.setString(2, huesped.getApellido());
             ps.setString(3, huesped.getNombre());
-            ps.setInt(4, huesped.getTelefono());
+            ps.setString(4, huesped.getTelefono());
             ps.setString(5, huesped.getCorreo());
             ps.setString(6, huesped.getDireccion());
             ps.setBoolean(7, huesped.isEstado());
@@ -61,7 +61,7 @@ public class Huesped_data {
                 h.setDni(rs.getInt("dni"));
                 h.setApellido(rs.getString("apellido"));
                 h.setNombre(rs.getString("nombre"));
-                h.setTelefono(rs.getInt("telefono"));
+                h.setTelefono(rs.getString("telefono"));
                 h.setCorreo(rs.getString("correo"));
                 h.setCorreo(rs.getString("direccion"));
                 h.setEstado(rs.getBoolean("estado"));
@@ -86,7 +86,7 @@ public class Huesped_data {
                 h.setDni(rs.getInt("dni"));
                 h.setApellido(rs.getString("apellido"));
                 h.setNombre(rs.getString("nombre"));
-                h.setTelefono(rs.getInt("telefono"));
+                h.setTelefono(rs.getString("telefono"));
                 h.setCorreo(rs.getString("correo"));
                 h.setCorreo(rs.getString("direccion"));
                 h.setEstado(rs.getBoolean("estado"));
@@ -111,7 +111,7 @@ public class Huesped_data {
                 h.setDni(rs.getInt("dni"));
                 h.setApellido(rs.getString("apellido"));
                 h.setNombre(rs.getString("nombre"));
-                h.setTelefono(rs.getInt("telefono"));
+                h.setTelefono(rs.getString("telefono"));
                 h.setCorreo(rs.getString("correo"));
                 h.setCorreo(rs.getString("direccion"));
                 h.setEstado(rs.getBoolean("estado"));

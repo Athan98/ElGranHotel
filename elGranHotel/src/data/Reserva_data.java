@@ -81,7 +81,7 @@ public class Reserva_data {
                  huesped.setCorreo(rs.getString("correo"));
                  huesped.setDireccion(rs.getString("direccion"));
                  huesped.setDni(dni);
-                 huesped.setTelefono(rs.getInt("telefono"));
+                 huesped.setTelefono(rs.getString("telefono"));
                  huesped.setIdHuesped(rs.getInt("idHuesped"));
                  r.setIdHuesped(huesped);
                  

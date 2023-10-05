@@ -30,6 +30,7 @@ public class Principal extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         Huespedes = new javax.swing.JMenu();
+        jmCargarHuesped = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +46,15 @@ public class Principal extends javax.swing.JFrame {
         );
 
         Huespedes.setText("Huespedes");
+
+        jmCargarHuesped.setText("Cargar Huesped");
+        jmCargarHuesped.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCargarHuespedActionPerformed(evt);
+            }
+        });
+        Huespedes.add(jmCargarHuesped);
+
         jMenuBar1.add(Huespedes);
 
         setJMenuBar(jMenuBar1);
@@ -62,6 +72,15 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmCargarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCargarHuespedActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        CargaHuesped ch = new CargaHuesped();
+        ch.setVisible(true);
+        escritorio.add(ch);
+        escritorio.moveToFront(ch);
+    }//GEN-LAST:event_jmCargarHuespedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,5 +121,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu Huespedes;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jmCargarHuesped;
     // End of variables declaration//GEN-END:variables
 }

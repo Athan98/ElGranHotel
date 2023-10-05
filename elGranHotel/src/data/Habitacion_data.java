@@ -28,7 +28,7 @@ public class Habitacion_data {
     
     public List listarHabitaciones(){
         List  <Habitacion> habitacionList = new ArrayList<>();
-        String sql = "SELECT * FROM habitacion h JOIN tipohabitacion th ON (h.idTipoHabitacion = th.idTipoHabitacion)";
+        String sql = "SELECT * FROM habitacion h JOIN tipohabitacion th ON (h.idTipoHabitacion = th.idTipoHabitacion) ORDER BY h.idHabitacion";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -52,7 +52,7 @@ public class Habitacion_data {
             JOptionPane.showMessageDialog(null, "Error de sentencia");
         }
 
-        return habitacionList;       
+        return habitacionList;     
         
      
     }

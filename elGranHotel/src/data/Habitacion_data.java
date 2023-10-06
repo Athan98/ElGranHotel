@@ -48,7 +48,7 @@ public class Habitacion_data {
                 th.setTipoCamas(rs.getString("tipoCamas"));
                 th.setPrecioPorNoche(rs.getDouble("precioPorNoche"));
                 h.setIdTipoHabitacion(th);
-                habitacionList.add(h);
+                habitacionList.add(h);                
             }
             ps.close();
         } catch (SQLException ex) {

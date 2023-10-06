@@ -38,7 +38,7 @@ public class ElGranHotel {
         
         //rd.hacerReserva(h, hab2, LocalDate.of(2023, Month.SEPTEMBER, 20), LocalDate.of(2023, Month.OCTOBER, 1), 1);
         
-        //System.out.println(habd.listarHabitaciones());
+        //System.out.println(habd.listarHabitaciones().get(habd.listarHabitaciones().size()-1));
         
 //        Agregar 200 Habitaciones        
 //        

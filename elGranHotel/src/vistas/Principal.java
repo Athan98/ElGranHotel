@@ -32,9 +32,9 @@ public class Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jmAgregarHab = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 700));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -49,7 +49,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu1.setText("Huespedes");
 
-        jMenuItem1.setText("Gestion");
+        jMenuItem1.setText("Gestión Huespedes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -59,7 +59,16 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Habitaciones");
+
+        jmAgregarHab.setText("Gestión Habitaciones");
+        jmAgregarHab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAgregarHabActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmAgregarHab);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -78,13 +87,22 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jmAgregarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarHabActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        Habitacion_vista hab = new Habitacion_vista();
+        hab.setVisible(true);
+        escritorio.add(hab);
+        escritorio.moveToFront(hab);
+    }//GEN-LAST:event_jmAgregarHabActionPerformed
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
         Huesped h = new Huesped();
         h.setVisible(true);
         escritorio.add(h);
-        escritorio.moveToFront(h);   
+        escritorio.moveToFront(h);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -128,5 +146,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jmAgregarHab;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,8 +11,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import javax.swing.JOptionPane;
 
@@ -121,11 +120,12 @@ public class Reserva_data {
     }
     
     public void cancelarReserva (ReservaHuesped r){
-        String sql = "UPDATE reserva r SET r.estado=0 WHERE idReserva=?";
+        String sql = "DELETE FROM reserva r WHERE idReserva=?";
         
         try {   
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, r.getIdReserva());
+           
             JOptionPane.showMessageDialog(null,"Reserva cancelada.");
             
             
@@ -136,13 +136,14 @@ public class Reserva_data {
         
     }
     
-    public void finReserva (Huesped h, int x){
+    public void finReserva (Huesped h, int id){
         
         String sql ="UPDATE reserva r SET estado =0 WHERE r.idReserva=? AND r.idHuesped=? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,x);
+            ps.setInt(1,id);
             ps.setInt(2, h.getIdHuesped());
+            ps.executeQuery();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null,"Reserva finalizada!");

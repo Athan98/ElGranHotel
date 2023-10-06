@@ -10,8 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -59,4 +61,48 @@ public class TipoHabitacion_data {
         return listatipos.get(random);
     }
     
+    public void actualizarPrecio(double precio, int id) {
+        try {
+            String sql ="UPDATE tipohabitacion t SET precioPorNoche = ? WHERE t.idTipoHabitacion = ? ";
+            
+            PreparedStatement ps = conexion.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setDouble(1,precio );
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Precio actualizado");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de sentencia");
+        }
+        
+    }
+    
+    public List listaTipoHab(){
+        List<TipoHabitacion> lista = new ArrayList();
+        
+        try {
+            String sql = "SELECT * FROM tipohabitacion";
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                th.setCantidadCamas(rs.getInt("cantidadCamas"));
+                th.setCantidadPersonas(rs.getInt("cantidadPersonas"));
+                th.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
+                th.setPrecioPorNoche(rs.getDouble("precioPorNoche"));
+                th.setTipo(rs.getString("Tipo"));
+                th.setTipoCamas(rs.getString("tipoCamas"));
+                lista.add(th);
+                th=null;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de sentencia .");
+        }
+       
+        return lista;
+    }
+    
+   
 }
+

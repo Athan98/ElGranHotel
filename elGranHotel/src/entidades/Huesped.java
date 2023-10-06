@@ -1,19 +1,23 @@
 
 package entidades;
 
+import java.io.FileInputStream;
+
 
 public class Huesped {
     
     private int idHuesped=-1;
-    private int dni;
+    private String dni;
     private String apellido;
     private String nombre;
     private String telefono;
     private String correo;
     private String direccion;
     private boolean estado;
+    private FileInputStream fotoHuesped;
+    private String nombreFotoHuesped;
 
-    public Huesped(int idHuesped, int dni, String apellido, String nombre, String telefono, String correo, String direccion, boolean estado) {
+    public Huesped(int idHuesped, String dni, String apellido, String nombre, String telefono, String correo, String direccion, boolean estado, FileInputStream fotoHuesped, String nombreFotoHuesped) {
         this.idHuesped = idHuesped;
         this.dni = dni;
         this.apellido = apellido;
@@ -22,9 +26,23 @@ public class Huesped {
         this.correo = correo;
         this.direccion = direccion;
         this.estado = estado;
+        this.fotoHuesped = fotoHuesped;
+        this.nombreFotoHuesped = nombreFotoHuesped;
     }
 
-    public Huesped(int dni, String apellido, String nombre, String telefono, String correo, String direccion, boolean estado) {
+    public Huesped(String dni, String apellido, String nombre, String telefono, String correo, String direccion, boolean estado, FileInputStream fotoHuesped, String nombreFotoHuesped) {
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.direccion = direccion;
+        this.estado = estado;
+        this.fotoHuesped = fotoHuesped;
+        this.nombreFotoHuesped = nombreFotoHuesped;
+    }
+
+    public Huesped(String dni, String apellido, String nombre, String telefono, String correo, String direccion, boolean estado) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -46,11 +64,11 @@ public class Huesped {
         this.idHuesped = idHuesped;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -102,10 +120,29 @@ public class Huesped {
         this.estado = estado;
     }
 
+    public FileInputStream getFotoHuesped() {
+        return fotoHuesped;
+    }
+
+    public void setFotoHuesped(FileInputStream fotoHuesped) {
+        this.fotoHuesped = fotoHuesped;
+    }
+
+    public String getNombreFotoHuesped() {
+        return nombreFotoHuesped;
+    }
+
+    public void setNombreFotoHuesped(String nombreFotoHuesped) {
+        this.nombreFotoHuesped = nombreFotoHuesped;
+    }
+
     @Override
     public String toString() {
         return "Huesped{" + "idHuesped=" + idHuesped + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", estado=" + estado + '}';
     }
     
+    
+
+   
     
 }

@@ -99,7 +99,7 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        Huesped h = new Huesped();
+        Huesped_vista h = new Huesped_vista();
         h.setVisible(true);
         escritorio.add(h);
         escritorio.moveToFront(h);

@@ -22,7 +22,7 @@ public class ElGranHotel {
         TipoHabitacion_data thd = new TipoHabitacion_data(con);
         
         Huesped_data hd=new Huesped_data(con);
-        Huesped h=new Huesped(23522666, "Ramirez", "Pedrin", "221456456", "rama@hot.com", "PedroPico 21", true);
+        Huesped h=new Huesped("23522666", "Ramirez", "Pedrin", "221456456", "rama@hot.com", "PedroPico 21", true);
         TipoHabitacion th = new TipoHabitacion("Simple", 1, 1, "Simple", 20000);
         
         Habitacion hab = new Habitacion(1,th,23, 1, false); 

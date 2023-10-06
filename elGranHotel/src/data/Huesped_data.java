@@ -1,6 +1,7 @@
 package data;
 
 import entidades.*;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -23,17 +24,19 @@ public class Huesped_data {
 
     public void agregarHuesped(Huesped huesped) {
 
-        String sql = "INSERT INTO huesped(dni,apellido,nombre,telefono,correo,direccion,estado) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO huesped(dni,apellido,nombre,telefono,correo,direccion,estado,fotoHuesped,nombreFotoHuesped) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, huesped.getDni());
+            ps.setString(1, huesped.getDni());
             ps.setString(2, huesped.getApellido());
             ps.setString(3, huesped.getNombre());
             ps.setString(4, huesped.getTelefono());
             ps.setString(5, huesped.getCorreo());
             ps.setString(6, huesped.getDireccion());
             ps.setBoolean(7, huesped.isEstado());
+            ps.setBinaryStream(8, huesped.getFotoHuesped());
+            ps.setString(9, huesped.getNombreFotoHuesped());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -58,7 +61,7 @@ public class Huesped_data {
             while (rs.next()) {
 
                 h.setIdHuesped(rs.getInt("idHuesped"));
-                h.setDni(rs.getInt("dni"));
+                h.setDni(rs.getString("dni"));
                 h.setApellido(rs.getString("apellido"));
                 h.setNombre(rs.getString("nombre"));
                 h.setTelefono(rs.getString("telefono"));
@@ -83,7 +86,7 @@ public class Huesped_data {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 h.setIdHuesped(rs.getInt("idHuesped"));
-                h.setDni(rs.getInt("dni"));
+                h.setDni(rs.getString("dni"));
                 h.setApellido(rs.getString("apellido"));
                 h.setNombre(rs.getString("nombre"));
                 h.setTelefono(rs.getString("telefono"));
@@ -108,7 +111,7 @@ public class Huesped_data {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 h.setIdHuesped(rs.getInt("idHuesped"));
-                h.setDni(rs.getInt("dni"));
+                h.setDni(rs.getString("dni"));
                 h.setApellido(rs.getString("apellido"));
                 h.setNombre(rs.getString("nombre"));
                 h.setTelefono(rs.getString("telefono"));

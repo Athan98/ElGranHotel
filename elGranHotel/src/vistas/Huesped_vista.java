@@ -9,15 +9,15 @@ package vistas;
  *
  * @author Usuario
  */
-public class Huesped extends javax.swing.JInternalFrame {
+public class Huesped_vista extends javax.swing.JInternalFrame {
 
    
     GestionHuesped panelGH=new GestionHuesped();
     BusquedaHuesped panelBH=new BusquedaHuesped();
     
-    public Huesped() {
+    public Huesped_vista() {
         initComponents();
-        PanePrincipal.addTab("Agregar",panelGH);
+        PanePrincipal.addTab("Agregar Huesped",panelGH);
         PanePrincipal.addTab("Busqueda",panelBH);
         PanePrincipal.setSelectedComponent(panelGH);
     }
@@ -77,7 +77,7 @@ public class Huesped extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PanePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
+                .addComponent(PanePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
         );
 
         pack();

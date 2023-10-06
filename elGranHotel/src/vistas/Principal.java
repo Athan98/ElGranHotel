@@ -29,47 +29,38 @@ public class Principal extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Huespedes = new javax.swing.JMenu();
-<<<<<<< Updated upstream
-        jmCargarHuesped = new javax.swing.JMenuItem();
-=======
+        jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
->>>>>>> Stashed changes
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 700));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 875, Short.MAX_VALUE)
+            .addGap(0, 902, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 482, Short.MAX_VALUE)
+            .addGap(0, 521, Short.MAX_VALUE)
         );
 
-        Huespedes.setText("Huespedes");
+        jMenu1.setText("Huespedes");
 
-<<<<<<< Updated upstream
-        jmCargarHuesped.setText("Cargar Huesped");
-        jmCargarHuesped.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmCargarHuespedActionPerformed(evt);
-            }
-        });
-        Huespedes.add(jmCargarHuesped);
-=======
-        jMenuItem1.setText("Gestion Huespedes");
+        jMenuItem1.setText("Gestion");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        Huespedes.add(jMenuItem1);
->>>>>>> Stashed changes
+        jMenu1.add(jMenuItem1);
 
-        jMenuBar1.add(Huespedes);
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -87,25 +78,14 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< Updated upstream
-    private void jmCargarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCargarHuespedActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        CargaHuesped ch = new CargaHuesped();
-        ch.setVisible(true);
-        escritorio.add(ch);
-        escritorio.moveToFront(ch);
-    }//GEN-LAST:event_jmCargarHuespedActionPerformed
-=======
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        Huesped h=new Huesped();
+        Huesped h = new Huesped();
         h.setVisible(true);
         escritorio.add(h);
         escritorio.moveToFront(h);   
     }//GEN-LAST:event_jMenuItem1ActionPerformed
->>>>>>> Stashed changes
 
     /**
      * @param args the command line arguments
@@ -143,13 +123,10 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Huespedes;
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-<<<<<<< Updated upstream
-    private javax.swing.JMenuItem jmCargarHuesped;
-=======
     private javax.swing.JMenuItem jMenuItem1;
->>>>>>> Stashed changes
     // End of variables declaration//GEN-END:variables
 }

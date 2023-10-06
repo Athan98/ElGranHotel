@@ -29,6 +29,8 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
 
         jCheckBox1 = new javax.swing.JCheckBox();
 
+        setPreferredSize(new java.awt.Dimension(500, 500));
+
         jCheckBox1.setText("jCheckBox1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

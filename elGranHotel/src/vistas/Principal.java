@@ -37,6 +37,10 @@ public class Principal extends javax.swing.JFrame {
         jmReservas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+<<<<<<< Updated upstream
+=======
+        setPreferredSize(new java.awt.Dimension(1000, 800));
+>>>>>>> Stashed changes
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);

@@ -33,9 +33,10 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmAgregarHab = new javax.swing.JMenuItem();
+        jReservas = new javax.swing.JMenu();
+        jmReservas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 700));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -71,6 +72,13 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.add(jmAgregarHab);
 
         jMenuBar1.add(jMenu2);
+
+        jReservas.setText("Reservas");
+
+        jmReservas.setText("Gestionar");
+        jReservas.add(jmReservas);
+
+        jMenuBar1.add(jReservas);
 
         setJMenuBar(jMenuBar1);
 
@@ -147,6 +155,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jReservas;
     private javax.swing.JMenuItem jmAgregarHab;
+    private javax.swing.JMenuItem jmReservas;
     // End of variables declaration//GEN-END:variables
 }

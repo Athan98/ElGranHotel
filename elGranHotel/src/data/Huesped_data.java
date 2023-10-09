@@ -103,13 +103,14 @@ public class Huesped_data {
         return huespedes;
     }
 
-    public Huesped buscarHuespedPorDni(int dni) {
+    public Huesped buscarHuespedPorDni(String dni) {
         String sql = "SELECT * FROM huesped WHERE dni=?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, dni);
+            ps.setString(1, dni);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                h=new Huesped();
                 h.setIdHuesped(rs.getInt("idHuesped"));
                 h.setDni(rs.getString("dni"));
                 h.setApellido(rs.getString("apellido"));

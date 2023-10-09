@@ -87,6 +87,7 @@ public class TipoHabitacion_data {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                th = new TipoHabitacion();
                 th.setCantidadCamas(rs.getInt("cantidadCamas"));
                 th.setCantidadPersonas(rs.getInt("cantidadPersonas"));
                 th.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
@@ -94,7 +95,7 @@ public class TipoHabitacion_data {
                 th.setTipo(rs.getString("Tipo"));
                 th.setTipoCamas(rs.getString("tipoCamas"));
                 lista.add(th);
-                th=null;
+                
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error de sentencia .");

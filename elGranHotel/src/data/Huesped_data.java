@@ -85,7 +85,6 @@ public class Huesped_data {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                h=new Huesped();
                 h.setIdHuesped(rs.getInt("idHuesped"));
                 h.setDni(rs.getString("dni"));
                 h.setApellido(rs.getString("apellido"));
@@ -104,11 +103,11 @@ public class Huesped_data {
         return huespedes;
     }
 
-    public Huesped buscarHuespedPorDni(String dni) {
+    public Huesped buscarHuespedPorDni(int dni) {
         String sql = "SELECT * FROM huesped WHERE dni=?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, dni);
+            ps.setInt(1, dni);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 h.setIdHuesped(rs.getInt("idHuesped"));
@@ -127,31 +126,29 @@ public class Huesped_data {
         return h;
     }
 
-//    public void modificarHuesped(int dni, String apellido, String nombre, int telefono, String correo, String direccion, boolean estado) {
-//        String sql = "UPDATE huesped SET apellido=?,nombre=?,telefono=?,correo=?,direccion=?,estado=? WHERE dni=?";
-//
-//        try {
-//            PreparedStatement ps = conexion.prepareStatement(sql);
-//
-//            ps.setString(1, apellido);
-//            ps.setString(2, nombre);
-//            ps.setInt(3, telefono);
-//            ps.setString(4, correo);
-//            ps.setString(5, direccion);
-//            ps.setBoolean(6, estado);
-//            ps.setInt(7, dni);
-//            ps.executeUpdate();
-//            JOptionPane.showMessageDialog(null, "Los datos del huesped han sido actualizados");
-//            ps.close();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error de sentencia");
-//        }
-//
-//    }
+    public void modificarHuesped(int dni, String apellido, String nombre, int telefono, String correo, String direccion, boolean estado) {
+        String sql = "UPDATE huesped SET apellido=?,nombre=?,telefono=?,correo=?,direccion=?,estado=? WHERE dni=?";
+
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+
+            ps.setString(1, apellido);
+            ps.setString(2, nombre);
+            ps.setInt(3, telefono);
+            ps.setString(4, correo);
+            ps.setString(5, direccion);
+            ps.setBoolean(6, estado);
+            ps.setInt(7, dni);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Los datos del huesped han sido actualizados");
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de sentencia");
+        }
+
+    }
 
     public void eliminarHuesped(int dni) {
-        
-        //MODIFICAR ESTADO
 
         String sql = "DELETE FROM huesped WHERE dni=?";
 

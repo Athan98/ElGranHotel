@@ -50,8 +50,6 @@ public class ElGranHotel {
 //            
 //        }
 
-        hd.eliminarHuesped(41339109);
-
         
 
         

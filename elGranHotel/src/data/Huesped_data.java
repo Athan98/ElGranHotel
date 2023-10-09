@@ -85,6 +85,7 @@ public class Huesped_data {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                h=new Huesped();
                 h.setIdHuesped(rs.getInt("idHuesped"));
                 h.setDni(rs.getString("dni"));
                 h.setApellido(rs.getString("apellido"));
@@ -110,7 +111,7 @@ public class Huesped_data {
             ps.setString(1, dni);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                h=new Huesped();
+               
                 h.setIdHuesped(rs.getInt("idHuesped"));
                 h.setDni(rs.getString("dni"));
                 h.setApellido(rs.getString("apellido"));

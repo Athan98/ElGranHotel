@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class AgregarHabitacion extends javax.swing.JInternalFrame {
+public class GestionHabitacion extends javax.swing.JInternalFrame {
 
     private Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
     private Habitacion_data hd = new Habitacion_data(con);
@@ -20,7 +20,7 @@ public class AgregarHabitacion extends javax.swing.JInternalFrame {
     /**
      * Creates new form AgregarHabitacion
      */
-    public AgregarHabitacion() {
+    public GestionHabitacion() {
         initComponents();
         cargarCombo();
     }
@@ -271,7 +271,7 @@ public class AgregarHabitacion extends javax.swing.JInternalFrame {
             jtCantHues.setText("-");
             jtCantCama.setText("-");
             jtTipoCama.setText("-");
-        }else {
+        } else {
             TipoHabitacion th = new TipoHabitacion();
             th = (TipoHabitacion) jcbTipoHab.getSelectedItem();
 
@@ -284,25 +284,25 @@ public class AgregarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcbTipoHabItemStateChanged
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-        if(jcbTipoHab.getSelectedIndex() == -1){
+        if (jcbTipoHab.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un tipo de habitacion");
-        }else{
-            hd.agregarHabitacion((TipoHabitacion)jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()), false);
+        } else {
+            hd.agregarHabitacion((TipoHabitacion) jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()), false);
             jtHab.setText("");
             jtPiso.setText("");
             jcbTipoHab.setSelectedIndex(-1);
         }
-        
+
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        if(jcbTipoHab.getSelectedIndex() == -1){
+        if (jcbTipoHab.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un tipo de habitacion");
-        }else if(jtHab.getText().isEmpty() || jtPiso.getText().isEmpty()){
+        } else if (jtHab.getText().isEmpty() || jtPiso.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
-        }else{
-            hd.modificarHabitacion((TipoHabitacion)jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()));
-            
+        } else {
+            hd.modificarHabitacion((TipoHabitacion) jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()));
+
             jtHab.setText("");
             jtPiso.setText("");
             jcbTipoHab.setSelectedIndex(-1);
@@ -312,7 +312,7 @@ public class AgregarHabitacion extends javax.swing.JInternalFrame {
     private void jbNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaActionPerformed
         List<Habitacion> listahab = hd.listarHabitaciones();
         Habitacion ultHab = (Habitacion) listahab.get(listahab.size() - 1);
-        
+
         if (ultHab.getNroHabitacion() == 20) {
             jtPiso.setText("" + (ultHab.getPiso() + 1));
             jtHab.setText("1");
@@ -326,14 +326,21 @@ public class AgregarHabitacion extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         Habitacion h = new Habitacion();
-        if(jtHab.getText().isEmpty() || jtPiso.getText().isEmpty()){
+        if (jtHab.getText().isEmpty() || jtPiso.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
-        }else{
-            h = hd.buscarHabitacion(Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()));
-            jcbTipoHab.setSelectedIndex(h.getIdTipoHabitacion().getIdTipoHabitacion());
+        } else {
+            try {
+                h = hd.buscarHabitacion(Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()));
+                System.out.println(h.getIdTipoHabitacion().getIdTipoHabitacion());
+                jcbTipoHab.setSelectedIndex(h.getIdTipoHabitacion().getIdTipoHabitacion() - 1);
+                jbAgregar.setEnabled(false);
+                jbModificar.setEnabled(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No existe esa habitación");
+            }           
+
         }
-        jbAgregar.setEnabled(false);
-        jbModificar.setEnabled(true);
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
 
@@ -360,7 +367,6 @@ public class AgregarHabitacion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jtTipoCama;
     private javax.swing.JLabel jtTipoHab;
     // End of variables declaration//GEN-END:variables
-
 
     public void cargarCombo() {
         List<TipoHabitacion> listatipo = new ArrayList<>();

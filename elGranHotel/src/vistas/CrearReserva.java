@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CrearReserva extends javax.swing.JInternalFrame {
 
-    Conexion con = new Conexion("jdbc:mariadb://localhost:3306/granhotel", "root", "");
+    Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
     Huesped_data hd = new Huesped_data(con);
     Habitacion_data habD = new Habitacion_data(con);
     Reserva_data rd = new Reserva_data(con);
@@ -426,7 +426,14 @@ public class CrearReserva extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConfirmarActionPerformed
-        // TODO add your handling code here:
+     Huesped h = new Huesped(jtDNI.getText(), jlApellido.getText(), jlNombre.getText(), jlTelefono.getText(), jlCorreo.getText(), jlDireccion.getText(), true);
+     
+     
+     
+     
+        
+        
+     
     }//GEN-LAST:event_jbConfirmarActionPerformed
 
     private void jbBuscarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarDNIActionPerformed
@@ -442,9 +449,9 @@ public class CrearReserva extends javax.swing.JInternalFrame {
     private void jbBuscarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarHabActionPerformed
         borrarFilas(modeloH);
         try {
-            int personas =(int) Integer.parseInt(jtCantPersonas.getText());
-                                                                                            //Validaciones fecha y cant personas
-            if (personas == 0 || jdIngreso == null || jdSalida == null || jdIngreso.getDate().before(Date.valueOf(LocalDate.now()))) {      
+            int personas = (int) Integer.parseInt(jtCantPersonas.getText());
+                                                                                //Validaciones fecha y cant personas
+            if (personas == 0 || jdIngreso == null || jdSalida == null || jdIngreso.getDate().before(Date.valueOf(LocalDate.now()))) {
                 JOptionPane.showMessageDialog(null, "Ingrese datos válidos.");
 
             } else {
@@ -452,7 +459,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
                 LocalDate salida = jdSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                 List<Habitacion> lista = new ArrayList<>();
-                
+
                 switch (personas) {                                             //Switch para llenar lista 
                     case 1:
                         lista.clear();
@@ -473,7 +480,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
                         break;
 
                 }
-                                                                                  // Reservas que coinciden con las fechas de ingreso y salida, o estan en el medio.
+                // Reservas que coinciden con las fechas de ingreso y salida, o estan en el medio.
                 List<ReservaHuesped> reservas = rd.buscarReservasXfecha(ingreso, salida);
 
                 for (int i = lista.size() - 1; i >= 0; i--) {
@@ -507,7 +514,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
 
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null,"Error de formato");
+            JOptionPane.showMessageDialog(null, "Error de formato");
 
         }
 

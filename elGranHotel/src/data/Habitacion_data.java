@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 public class Habitacion_data {
 
     private Connection conexion = null;
-    private Habitacion h = new Habitacion();
     private TipoHabitacion th = new TipoHabitacion();
 
     public Habitacion_data(Conexion con) {
@@ -30,6 +29,7 @@ public class Habitacion_data {
     public List listarHabitaciones() {
         List<Habitacion> habitacionList = new ArrayList<>();
         String sql = "SELECT * FROM habitacion h JOIN tipohabitacion th ON (h.idTipoHabitacion = th.idTipoHabitacion) ORDER BY h.idHabitacion";
+        Habitacion h = new Habitacion();
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -38,7 +38,7 @@ public class Habitacion_data {
                 h.setIdHabitacion(rs.getInt("idHabitacion"));
                 h.setNroHabitacion(rs.getInt("nroHabitacion"));
                 h.setPiso(rs.getInt("piso"));
-                h.setOcupada(rs.getBoolean("ocupada"));
+                h.setEstado(rs.getBoolean("estado"));
                 th.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
                 th.setTipo(rs.getString("tipo"));
                 th.setCantidadPersonas(rs.getInt("cantidadPersonas"));
@@ -57,16 +57,16 @@ public class Habitacion_data {
 
     }
 
-    public void agregarHabitacion(TipoHabitacion tipo, int nro, int piso, boolean ocupada) {
-
-        String sql = "INSERT INTO habitacion (idTipoHabitacion, nroHabitacion, piso, ocupada) VALUES (?,?,?,?);";
+    public void agregarHabitacion(TipoHabitacion tipo, int nro, int piso, boolean estado) {
+        Habitacion h = new Habitacion();
+        String sql = "INSERT INTO habitacion (idTipoHabitacion, nroHabitacion, piso, estado) VALUES (?,?,?,?);";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, tipo.getIdTipoHabitacion());
             ps.setInt(2, nro);
             ps.setInt(3, piso);
-            ps.setBoolean(4, ocupada);
+            ps.setBoolean(4, estado);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -82,7 +82,7 @@ public class Habitacion_data {
     }
 
     public Habitacion buscarHabitacion(int nro, int piso) {
-
+        Habitacion h = new Habitacion();
         String sql = "SELECT * FROM habitacion h JOIN tipoHabitacion th ON (h.idTipoHabitacion = th.idTipoHabitacion) WHERE nroHabitacion = ? AND piso = ?";
 
         try {
@@ -94,7 +94,7 @@ public class Habitacion_data {
                 h.setIdHabitacion(rs.getInt("idHabitacion"));
                 h.setNroHabitacion(rs.getInt("nroHabitacion"));
                 h.setPiso(rs.getInt("piso"));
-                h.setOcupada(rs.getBoolean("ocupada"));
+                h.setEstado(rs.getBoolean("estado"));
                 th.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
                 th.setTipo(rs.getString("tipo"));
                 th.setCantidadCamas(rs.getInt("cantidadCamas"));
@@ -111,7 +111,7 @@ public class Habitacion_data {
     }
 
     public void modificarHabitacion(TipoHabitacion tipo, int nro, int piso) {
-
+        
         String sql = "UPDATE habitacion SET idTipoHabitacion=? WHERE nroHabitacion=? AND piso=?";
 
         try {
@@ -127,13 +127,13 @@ public class Habitacion_data {
         }
     }
 
-    public void modificarDisponibilidad(int nro, int piso, boolean ocupada) {
+    public void modificarDisponibilidad(int nro, int piso, boolean estado) {
 
-        String sql = "UPDATE habitacion SET ocupada=? WHERE nroHabitacion=? AND piso=?";
+        String sql = "UPDATE habitacion SET estado=? WHERE nroHabitacion=? AND piso=?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setBoolean(1, ocupada);
+            ps.setBoolean(1, estado);
             ps.setInt(2, nro);
             ps.setInt(3, piso);
             ps.executeUpdate();
@@ -165,6 +165,7 @@ public class Habitacion_data {
 
     public List listarPorCategoria(String tipo) {
         List<Habitacion> lista = new ArrayList();
+        Habitacion h = new Habitacion();
         String sql = "SELECT * FROM habitacion h JOIN tipohabitacion th ON (h.idTipoHabitacion=th.idTipoHabitacion) WHERE th.Tipo=?";
 
         try {
@@ -178,7 +179,7 @@ public class Habitacion_data {
                 h.setIdHabitacion(rs.getInt("idHabitacion"));
                 h.setNroHabitacion(rs.getInt("nroHabitacion"));
                 h.setPiso(rs.getInt("piso"));
-                h.setOcupada(rs.getBoolean("ocupada"));
+                h.setEstado(rs.getBoolean("estado"));
 
                 th.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
                 th.setTipo(rs.getString("tipo"));

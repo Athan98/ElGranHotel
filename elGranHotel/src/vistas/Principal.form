@@ -24,12 +24,12 @@
             <Property name="text" type="java.lang.String" value="Habitaciones"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jmAgregarHab">
+            <MenuItem class="javax.swing.JMenuItem" name="jmGestionHab">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gesti&#xf3;n Habitaciones"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmAgregarHabActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmGestionHabActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -20,8 +20,7 @@ public class Habitacion_vista extends javax.swing.JInternalFrame {
         initComponents();
         PanePrincipal.addTab("Gestionar Habitaciones",panelGH);
         PanePrincipal.addTab("Gestionar Precios",panelGP);
-        PanePrincipal.setSelectedComponent(panelGH);
-        
+        PanePrincipal.setSelectedComponent(panelGH);        
     }
 
     /**

@@ -34,7 +34,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jmAgregarHab = new javax.swing.JMenuItem();
+        jmGestionHab = new javax.swing.JMenuItem();
         jReservas = new javax.swing.JMenu();
         jmReservas = new javax.swing.JMenuItem();
 
@@ -65,13 +65,13 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu2.setText("Habitaciones");
 
-        jmAgregarHab.setText("Gestión Habitaciones");
-        jmAgregarHab.addActionListener(new java.awt.event.ActionListener() {
+        jmGestionHab.setText("Gestión Habitaciones");
+        jmGestionHab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmAgregarHabActionPerformed(evt);
+                jmGestionHabActionPerformed(evt);
             }
         });
-        jMenu2.add(jmAgregarHab);
+        jMenu2.add(jmGestionHab);
 
         jMenuBar1.add(jMenu2);
 
@@ -103,14 +103,15 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmAgregarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarHabActionPerformed
+    private void jmGestionHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionHabActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
         Habitacion_vista hab = new Habitacion_vista();
         hab.setVisible(true);
         escritorio.add(hab);
         escritorio.moveToFront(hab);
-    }//GEN-LAST:event_jmAgregarHabActionPerformed
+        hab.setLocation((escritorio.getWidth() - hab.getWidth())/2, (escritorio.getHeight() - hab.getHeight())/2);
+    }//GEN-LAST:event_jmGestionHabActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         escritorio.removeAll();
@@ -119,6 +120,7 @@ public class Principal extends javax.swing.JFrame {
         h.setVisible(true);
         escritorio.add(h);
         escritorio.moveToFront(h);
+        h.setLocation((escritorio.getWidth() - h.getWidth())/2, (escritorio.getHeight() - h.getHeight())/2);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jmReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmReservasActionPerformed
@@ -128,6 +130,7 @@ public class Principal extends javax.swing.JFrame {
         rv.setVisible(true);
         escritorio.add(rv);
         escritorio.moveToFront(rv);
+        rv.setLocation((escritorio.getWidth() - rv.getWidth())/2, (escritorio.getHeight() - rv.getHeight())/2);
     }//GEN-LAST:event_jmReservasActionPerformed
 
     /**
@@ -172,7 +175,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jReservas;
-    private javax.swing.JMenuItem jmAgregarHab;
+    private javax.swing.JMenuItem jmGestionHab;
     private javax.swing.JMenuItem jmReservas;
     // End of variables declaration//GEN-END:variables
 }

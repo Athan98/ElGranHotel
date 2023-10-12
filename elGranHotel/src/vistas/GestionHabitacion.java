@@ -52,6 +52,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jtCantCama = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jrbEstado = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         jbAgregar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
@@ -87,7 +88,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jpUltHabLayout.setHorizontalGroup(
             jpUltHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpUltHabLayout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,43 +150,59 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setText("Tipo de cama:");
 
+        jrbEstado.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jrbEstado.setText("Estado");
+        jrbEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbEstadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpTipoHabLayout = new javax.swing.GroupLayout(jpTipoHab);
         jpTipoHab.setLayout(jpTipoHabLayout);
         jpTipoHabLayout.setHorizontalGroup(
             jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpTipoHabLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jpTipoHabLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtTipoHab))
-                    .addGroup(jpTipoHabLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtCantCama)))
-                .addGap(54, 54, 54)
+                .addGap(112, 112, 112)
                 .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpTipoHabLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtTipoCama))
+                        .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpTipoHabLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(54, 54, 54)
+                                .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jrbEstado))
+                        .addContainerGap(363, Short.MAX_VALUE))
                     .addGroup(jpTipoHabLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtCantHues))
-                    .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpTipoHabLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtTipoHab))
+                            .addGroup(jpTipoHabLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtCantCama)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpTipoHabLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtTipoCama))
+                            .addGroup(jpTipoHabLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtCantHues)))
+                        .addGap(137, 137, 137))))
         );
         jpTipoHabLayout.setVerticalGroup(
             jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpTipoHabLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(17, 17, 17)
                 .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(51, 51, 51)
+                .addGap(45, 45, 45)
                 .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtTipoHab)
                     .addComponent(jLabel5)
@@ -197,7 +214,9 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(jtTipoCama)
                     .addComponent(jLabel6))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jrbEstado)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jbAgregar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -231,12 +250,12 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAgregar)
                     .addComponent(jbModificar))
-                .addGap(29, 29, 29))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -259,7 +278,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                 .addComponent(jpTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
@@ -287,7 +306,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         if (jcbTipoHab.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un tipo de habitacion");
         } else {
-            hd.agregarHabitacion((TipoHabitacion) jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()), false);
+            hd.agregarHabitacion((TipoHabitacion) jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()), jrbEstado.isSelected());
             jtHab.setText("");
             jtPiso.setText("");
             jcbTipoHab.setSelectedIndex(-1);
@@ -320,28 +339,35 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
             jtPiso.setText("" + ultHab.getPiso());
             jtHab.setText("" + (ultHab.getNroHabitacion() + 1));
         }
+        jcbTipoHab.setSelectedIndex(-1);
+        jrbEstado.setSelected(true);
         jbAgregar.setEnabled(true);
         jbModificar.setEnabled(false);
     }//GEN-LAST:event_jbNuevaActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        Habitacion h = new Habitacion();
+        
         if (jtHab.getText().isEmpty() || jtPiso.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
         } else {
             try {
+                Habitacion h = new Habitacion();
                 h = hd.buscarHabitacion(Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()));
-                System.out.println(h.getIdTipoHabitacion().getIdTipoHabitacion());
                 jcbTipoHab.setSelectedIndex(h.getIdTipoHabitacion().getIdTipoHabitacion() - 1);
                 jbAgregar.setEnabled(false);
                 jbModificar.setEnabled(true);
-            } catch (Exception e) {
+                jrbEstado.setSelected(h.isEstado());
+            } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "No existe esa habitación");
             }           
 
         }
 
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jrbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbEstadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -360,6 +386,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<TipoHabitacion> jcbTipoHab;
     private javax.swing.JPanel jpTipoHab;
     private javax.swing.JPanel jpUltHab;
+    private javax.swing.JRadioButton jrbEstado;
     private javax.swing.JLabel jtCantCama;
     private javax.swing.JLabel jtCantHues;
     private javax.swing.JTextField jtHab;

@@ -20,17 +20,15 @@ import javax.swing.JOptionPane;
 public class Reserva_data {
 
     private Connection con = null;
-    private ReservaHuesped reserva = new ReservaHuesped();
-    private Huesped huesped1 = new Huesped();
-    private Habitacion hab1 = new Habitacion();
-    private TipoHabitacion tipo1 = new TipoHabitacion();
+    
+ 
 
     public Reserva_data(Conexion c) {
         this.con = c.buscarConexion();
     }
 
     public void hacerReserva(Huesped h, Habitacion hab, LocalDate ingreso, LocalDate egreso, int personas) {
-
+        ReservaHuesped reserva = new ReservaHuesped();
         String sql = "INSERT INTO reserva (idHuesped, idHabitacion, fechaIngreso, fechaSalida, monto, estado) VALUES (?,?,?,?,?,?)";
 
         long dias = egreso.toEpochDay() - ingreso.toEpochDay();

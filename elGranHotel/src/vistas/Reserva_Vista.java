@@ -28,6 +28,8 @@ public class Reserva_Vista extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         PanelPrincipal = new javax.swing.JTabbedPane();
 
+        setClosable(true);
+
         Titulo.setBackground(new java.awt.Color(120, 93, 39));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));

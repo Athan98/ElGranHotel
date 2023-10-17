@@ -25,8 +25,8 @@ public class ElGranHotel {
         Huesped h=new Huesped("23522666", "Ramirez", "Pedrin", "221456456", "rama@hot.com", "PedroPico 21", true);
         TipoHabitacion th = new TipoHabitacion("Simple", 1, 1, "Simple", 20000);
         
-        Habitacion hab = new Habitacion(1,th,23, 1, false); 
-        Habitacion hab2 = new Habitacion(2, th,24 , 1, false);
+//        Habitacion hab = new Habitacion(1,th,23, 1, false); 
+//        Habitacion hab2 = new Habitacion(2, th,24 , 1, false);
         
         //habd.agregarHabitacion(thd.tipoRandom(), 12, 4, true);
         System.out.println(habd.buscarHabitacion(1, 114));

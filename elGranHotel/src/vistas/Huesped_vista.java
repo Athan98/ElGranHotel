@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
@@ -14,16 +16,15 @@ public class Huesped_vista extends javax.swing.JInternalFrame {
    
     GestionHuesped panelGH=new GestionHuesped();
     BusquedaHuesped panelBH=new BusquedaHuesped();
+
     
     public Huesped_vista() {
         initComponents();
         PanePrincipal.addTab("Agregar Huesped",panelGH);
         PanePrincipal.addTab("Busqueda",panelBH);
         PanePrincipal.setSelectedComponent(panelGH);
-        if(panelBH.isSelected()){
-        panelBH.actualizarLista();
-        }
-        
+
+
     }
 
     
@@ -37,6 +38,12 @@ public class Huesped_vista extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(800, 700));
+
+        PanePrincipal.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                PanePrincipalStateChanged(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(120, 93, 39));
 
@@ -85,6 +92,14 @@ public class Huesped_vista extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PanePrincipalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PanePrincipalStateChanged
+//       
+//       
+        panelBH.borrarFilas(BusquedaHuesped.modelo);
+        panelBH.actualizarLista();
+
+    }//GEN-LAST:event_PanePrincipalStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

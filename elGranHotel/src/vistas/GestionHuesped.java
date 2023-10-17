@@ -13,15 +13,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import entidades.*;
-import java.awt.Graphics;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 
 /**
  *
@@ -276,6 +272,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                 h.setNombreFotoHuesped(null);
 
                 hd.agregarHuesped(h);
+                
             } else {
 
                 h.setApellido(jtAPELLIDO.getText());

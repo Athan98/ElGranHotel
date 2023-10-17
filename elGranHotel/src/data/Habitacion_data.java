@@ -38,6 +38,7 @@ public class Habitacion_data {
                 h.setIdHabitacion(rs.getInt("idHabitacion"));
                 h.setNroHabitacion(rs.getInt("nroHabitacion"));
                 h.setPiso(rs.getInt("piso"));
+                h.setOcupada(rs.getBoolean("ocupada"));
                 h.setEstado(rs.getBoolean("estado"));
                 th.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
                 th.setTipo(rs.getString("tipo"));
@@ -57,16 +58,17 @@ public class Habitacion_data {
 
     }
 
-    public void agregarHabitacion(TipoHabitacion tipo, int nro, int piso, boolean estado) {
+    public void agregarHabitacion(TipoHabitacion tipo, int nro, int piso, boolean ocupada, boolean estado) {
         Habitacion h = new Habitacion();
-        String sql = "INSERT INTO habitacion (idTipoHabitacion, nroHabitacion, piso, estado) VALUES (?,?,?,?);";
+        String sql = "INSERT INTO habitacion (idTipoHabitacion, nroHabitacion, piso, ocupada, estado) VALUES (?,?,?,?,?);";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, tipo.getIdTipoHabitacion());
             ps.setInt(2, nro);
             ps.setInt(3, piso);
-            ps.setBoolean(4, estado);
+            ps.setBoolean(4, ocupada);
+            ps.setBoolean(5, estado);
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -144,24 +146,6 @@ public class Habitacion_data {
         }
     }
 
-    public void eliminarHabitacion(int nro, int piso) {
-
-        String sql = "DELETE FROM habitacion WHERE nroHabitacion=? AND piso=?";
-
-        try {
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, nro);
-            ps.setInt(2, piso);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "La habitacion ha sido eliminada");
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error. La habitacion se encuentra vinculada");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error");
-        }
-
-    }
 
     public List listarPorCategoria(String tipo) {
         List<Habitacion> lista = new ArrayList();

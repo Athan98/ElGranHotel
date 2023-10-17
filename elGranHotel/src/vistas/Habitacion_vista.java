@@ -14,12 +14,14 @@ public class Habitacion_vista extends javax.swing.JInternalFrame {
    
     GestionHabitacion panelGH = new GestionHabitacion();
     GestionPrecio panelGP = new GestionPrecio();
+    ListarHabitacion panelLH = new ListarHabitacion();
     
     
     public Habitacion_vista() {
         initComponents();
         PanePrincipal.addTab("Gestionar Habitaciones",panelGH);
         PanePrincipal.addTab("Gestionar Precios",panelGP);
+        PanePrincipal.addTab("Listar Habitaciones", panelLH);
         PanePrincipal.setSelectedComponent(panelGH);        
     }
 
@@ -80,8 +82,8 @@ public class Habitacion_vista extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PanePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(PanePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

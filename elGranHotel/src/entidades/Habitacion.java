@@ -8,20 +8,23 @@ public class Habitacion {
     private TipoHabitacion idTipoHabitacion;
     private int nroHabitacion;
     private int piso;
+    private boolean ocupada;
     private boolean estado;
 
-    public Habitacion(int idHabitacion, TipoHabitacion idTipoHabitacion, int nroHabitacion, int piso, boolean estado) {
+    public Habitacion(int idHabitacion, TipoHabitacion idTipoHabitacion, int nroHabitacion, int piso, boolean ocupada, boolean estado) {
         this.idHabitacion = idHabitacion;
         this.idTipoHabitacion = idTipoHabitacion;
         this.nroHabitacion = nroHabitacion;
         this.piso = piso;
+        this.ocupada = ocupada;
         this.estado = estado;
     }
 
-    public Habitacion(TipoHabitacion idTipoHabitacion, int nroHabitacion, int piso, boolean estado) {
+    public Habitacion(TipoHabitacion idTipoHabitacion, int nroHabitacion, int piso, boolean ocupada, boolean estado) {
         this.idTipoHabitacion = idTipoHabitacion;
         this.nroHabitacion = nroHabitacion;
         this.piso = piso;
+        this.ocupada = ocupada;
         this.estado = estado;
     }    
 
@@ -70,9 +73,17 @@ public class Habitacion {
         this.estado = estado;
     }
 
+    public boolean isOcupada() {
+        return ocupada;
+    }
+
+    public void setOcupada(boolean ocupada) {
+        this.ocupada = ocupada;
+    }
+
     @Override
     public String toString() {
-        return "Habitacion{ id:" + idHabitacion + ", nro:" + nroHabitacion + ", piso:" + piso + ", TipoHabitacion:" + idTipoHabitacion.getTipo() + ", estado=" + estado + '}';
+        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", idTipoHabitacion=" + idTipoHabitacion + ", nroHabitacion=" + nroHabitacion + ", piso=" + piso + ", ocupada=" + ocupada + ", estado=" + estado + '}';
     }
     
     

@@ -152,11 +152,6 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
 
         jrbEstado.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jrbEstado.setText("Estado");
-        jrbEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbEstadoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpTipoHabLayout = new javax.swing.GroupLayout(jpTipoHab);
         jpTipoHab.setLayout(jpTipoHabLayout);
@@ -214,9 +209,9 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(jtTipoCama)
                     .addComponent(jLabel6))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jrbEstado)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jbAgregar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -364,10 +359,6 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jbBuscarActionPerformed
-
-    private void jrbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jrbEstadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

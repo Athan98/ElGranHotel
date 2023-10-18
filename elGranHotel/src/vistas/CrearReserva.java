@@ -22,15 +22,17 @@ import javax.swing.table.DefaultTableModel;
  * @author Stefano
  */
 public class CrearReserva extends javax.swing.JInternalFrame {
-
+    
     Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
     Huesped_data hd = new Huesped_data(con);
     Habitacion_data habD = new Habitacion_data(con);
     Reserva_data rd = new Reserva_data(con);
-
+    TipoHabitacion_data thD = new TipoHabitacion_data(con);
+    double PrecioTotal = 0;
+    
     DefaultTableModel modeloH = new DefaultTableModel();
     DefaultTableModel modeloR = new DefaultTableModel();
-
+    
     public CrearReserva() {
         initComponents();
         cargarCabeceras();
@@ -374,9 +376,16 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jbReservar.setText("Realizar Reservas");
+        jbReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbReservarActionPerformed(evt);
+            }
+        });
 
+        jlMontoTotal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jlMontoTotal.setText("$-");
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Total: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -390,19 +399,17 @@ public class CrearReserva extends javax.swing.JInternalFrame {
                     .addComponent(PanelFechas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addGap(29, 29, 29)
-                        .addComponent(jlMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addGap(38, 38, 38)
+                        .addComponent(jlMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbReservar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PanelReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PanelHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(PanelReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PanelHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -419,10 +426,11 @@ public class CrearReserva extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(PanelReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jbReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jlMontoTotal))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(jlMontoTotal)))))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
 
@@ -430,25 +438,37 @@ public class CrearReserva extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConfirmarActionPerformed
-     Huesped h = new Huesped(jtDNI.getText(), jlApellido.getText(), jlNombre.getText(), jlTelefono.getText(), jlCorreo.getText(), jlDireccion.getText(), true);
-     LocalDate ingreso = jdIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-     LocalDate salida = jdSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-     long dias = salida.toEpochDay() - ingreso.toEpochDay();
-     double PrecioTotal=  ((double) modeloH.getValueAt(jtHab.getSelectedRow(), 5))*dias;
-     
-     modeloR.addRow(new Object[]{h.getDni(),
-                                ingreso,salida,
-                                modeloH.getValueAt(jtHab.getSelectedRow(), 0).toString(),
-                                modeloH.getValueAt(jtHab.getSelectedRow(), 1).toString(),
-                                PrecioTotal,
-            
-     });
-     
-     
-     
+        Huesped h = hd.buscarHuespedPorDni(jtDNI.getText());
+        LocalDate ingreso = jdIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate salida = jdSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        long dias = salida.toEpochDay() - ingreso.toEpochDay();
         
+        List<Habitacion> habSelec = new ArrayList<>();
         
-     
+        for (int i = 0; i <= jtHab.getRowCount(); i++) {                         // Lista con habitaciones seleccionadas
+
+            if (jtHab.isRowSelected(i)) {
+                Habitacion habitacion = new Habitacion();
+                TipoHabitacion tipo = new TipoHabitacion();
+                habitacion.setPiso(Integer.parseInt(modeloH.getValueAt(i, 0).toString()));
+                habitacion.setNroHabitacion(Integer.parseInt(modeloH.getValueAt(i, 1).toString()));
+                tipo.setPrecioPorNoche((double) modeloH.getValueAt(i, 5));
+                habitacion.setIdTipoHabitacion(tipo);
+                
+                habSelec.add(habitacion);                                       
+                modeloH.removeRow(i);                                           // Borro la fila de la tabla habitaciones
+            }
+        }
+        // Cargo tabla de reservas confirmadas
+        for (int x = 0; x <= habSelec.size() - 1; x++) {
+            PrecioTotal = PrecioTotal + habSelec.get(x).getIdTipoHabitacion().getPrecioPorNoche() * dias;
+            modeloR.addRow(new Object[]{h.getDni(), ingreso, salida,
+                habSelec.get(x).getPiso(), habSelec.get(x).getNroHabitacion(), habSelec.get(x).getIdTipoHabitacion().getPrecioPorNoche() * dias});
+        }
+        
+        jlMontoTotal.setText(PrecioTotal + "");
+        
+
     }//GEN-LAST:event_jbConfirmarActionPerformed
 
     private void jbBuscarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarDNIActionPerformed
@@ -465,56 +485,59 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         borrarFilas(modeloH);
         try {
             int personas = Integer.parseInt(jtCantPersonas.getText());
-                                                                                //Validaciones fecha y cant personas
+            //Validaciones fecha y cant personas
             if (personas == 0 || jdIngreso == null || jdSalida == null || jdIngreso.getDate().before(Date.valueOf(LocalDate.now()))) {
                 JOptionPane.showMessageDialog(null, "Ingrese datos válidos.");
-
+                
             } else {
                 LocalDate ingreso = jdIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate salida = jdSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
+                
                 List<Habitacion> lista = new ArrayList<>();
-
+                List<TipoHabitacion> tipos = thD.listaTipoHab();
+                
                 switch (personas) {                                             //Switch para llenar lista 
                     case 1:
                         lista.clear();
-                        lista = habD.listarPorCategoria("Simple");
-                        lista.addAll(habD.listarPorCategoria("Suite Lujo"));
-
+                        lista = habD.listarPorCategoria(tipos.get(0));
+                        lista.addAll(habD.listarPorCategoria(tipos.get(4)));    // Simples y Suite Lujo
+                        lista.addAll(habD.listarPorCategoria(tipos.get(5)));
+                        
                         break;
                     case 2:
                         lista.clear();
-                        lista = habD.listarPorCategoria("Doble");
-                        lista.addAll(habD.listarPorCategoria("Suite Lujo"));
-                        lista.addAll(habD.listarPorCategoria("Triple"));
-
+                        lista = habD.listarPorCategoria(tipos.get(1));
+                        lista.addAll(habD.listarPorCategoria(tipos.get(2)));    // Dobles, Triple y Suite Lujo
+                        lista.addAll(habD.listarPorCategoria(tipos.get(3)));
+                        lista.addAll(habD.listarPorCategoria(tipos.get(5)));
+                        
                         break;
                     case 3:
                         lista.clear();
-                        lista = habD.listarPorCategoria("Triple");
+                        lista = habD.listarPorCategoria(tipos.get(3));                     // Triples
                         break;
-
+                    
                 }
-                                                                                // Reservas que coinciden con las fechas de ingreso y salida, o estan en el medio.
+                // Reservas que coinciden con las fechas de ingreso y salida, o estan en el medio.
                 List<ReservaHuesped> reservas = rd.buscarReservasXfecha(ingreso, salida);
-
+                
                 for (int i = lista.size() - 1; i >= 0; i--) {
                     boolean ocupada = false;
                     Habitacion hab = lista.get(i);
-
+                    
                     for (ReservaHuesped reserva : reservas) {
-
+                        
                         if (reserva.getIdHabitacion().getIdHabitacion() == hab.getIdHabitacion()) {
                             ocupada = true;
                             break;
                         }
-
+                        
                     }
                     if (ocupada == true) {                                      // Elimino de la lista las habitacion ocupadas en esa fecha, segun las reservas obtenidas.
                         lista.remove(i);
                     }
                 }
-
+                
                 for (Habitacion habitacion : lista) {
                     modeloH.addRow(new Object[]{
                         habitacion.getPiso(),
@@ -523,24 +546,48 @@ public class CrearReserva extends javax.swing.JInternalFrame {
                         habitacion.getIdTipoHabitacion().getCantidadCamas(),
                         habitacion.getIdTipoHabitacion().getTipoCamas(),
                         habitacion.getIdTipoHabitacion().getPrecioPorNoche()
-
+                    
                     });
                 }
-
+                
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error de formato");
-
+            
         }
-
+        
 
     }//GEN-LAST:event_jbBuscarHabActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        
-        modeloR.removeRow(jtReserv.getSelectedRow());
-        
+        try {
+            PrecioTotal = PrecioTotal - ((double) modeloR.getValueAt(jtReserv.getSelectedRow(), 5));
+            modeloR.removeRow(jtReserv.getSelectedRow());
+          
+            
+            jlMontoTotal.setText(PrecioTotal + "");
+            
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "No hay reservas para cancelar.");
+        }
+
     }//GEN-LAST:event_jbCancelarActionPerformed
+
+    private void jbReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservarActionPerformed
+        for (int i = 0; i <= jtReserv.getRowCount() - 1; i++) {
+            LocalDate ingreso = jdIngreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate salida = jdSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            
+            rd.hacerReserva(hd.buscarHuespedPorDni(jtDNI.getText()),
+                    habD.buscarHabitacion((int) modeloR.getValueAt(i, 4), (int) modeloR.getValueAt(i, 3)),
+                    ingreso, salida, Integer.parseInt(jtCantPersonas.getText()));
+            
+        }
+        
+        borrarFilas(modeloR);
+        
+
+    }//GEN-LAST:event_jbReservarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -586,12 +633,12 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         modeloH.addColumn("Piso");
         modeloH.addColumn("N°Habitacion");
         modeloH.addColumn("Tipo");
-
+        
         modeloH.addColumn("Cama/s");
         modeloH.addColumn("T.Cama/s");
         modeloH.addColumn("Precio X noche($");
         jtHab.setModel(modeloH);
-
+        
         modeloR.addColumn("DNI");
         modeloR.addColumn("Ingreso");
         modeloR.addColumn("Salida");
@@ -599,15 +646,15 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         modeloR.addColumn("N°Habitacion");
         modeloR.addColumn("Precio");
         jtReserv.setModel(modeloR);
-
+        
     }
-
+    
     public void borrarFilas(DefaultTableModel modelo) {
         int f = modelo.getRowCount() - 1;
         for (; f >= 0; f--) {
             modelo.removeRow(f);
         }
-
+        
     }
-
+    
 }

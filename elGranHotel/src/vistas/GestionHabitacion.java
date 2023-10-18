@@ -301,7 +301,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         if (jcbTipoHab.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un tipo de habitacion");
         } else {
-            hd.agregarHabitacion((TipoHabitacion) jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()), jrbEstado.isSelected());
+            hd.agregarHabitacion((TipoHabitacion) jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()), false, jrbEstado.isSelected());
             jtHab.setText("");
             jtPiso.setText("");
             jcbTipoHab.setSelectedIndex(-1);

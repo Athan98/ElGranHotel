@@ -10,6 +10,7 @@ import data.Huesped_data;
 import entidades.Huesped;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,15 +24,14 @@ import javax.swing.table.DefaultTableModel;
 public class BusquedaHuesped extends javax.swing.JInternalFrame {
 
     public static DefaultTableModel modelo = new DefaultTableModel();
-    private boolean cabeceraArmada=false;
+
     Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
     Huesped_data hd = new Huesped_data(con);
 
     public BusquedaHuesped() {
         initComponents();
-        if(cabeceraArmada==true){
+        borrarColumnas();
         armarCabeceraTabla();
-        }
         actualizarLista();
         jbGUARDAR.setEnabled(false);
         jbCambiarFoto.setEnabled(false);
@@ -128,6 +128,24 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
         jLabel8.setText("Correo:");
 
         jtDni.setEditable(false);
+
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyPressed(evt);
+            }
+        });
+
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtNombreKeyPressed(evt);
+            }
+        });
+
+        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtTelefonoKeyPressed(evt);
+            }
+        });
 
         paneFoto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -318,7 +336,7 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
 
     private void jtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBusquedaKeyReleased
 
-        borrarFilas(modelo);
+        borrarFilas();
 
         List<Huesped> huespedList = new ArrayList<>();
 
@@ -402,7 +420,7 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
             String correo = jtCorreo.getText();
             String direccion = jtDireccion.getText();
             boolean estado = jrEstado.isSelected();
- 
+
             if (jtDireccionFoto.getText().isEmpty()) {
                 fotoHuesped = null;
                 direccionFoto = null;
@@ -410,26 +428,29 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
                 fotoHuesped = new FileInputStream(jtDireccionFoto.getText());
                 direccionFoto = jtDireccionFoto.getText();
             }
-         
-            hd.modificarHuesped(dni, apellido, nombre, telefono, correo, direccion, estado, fotoHuesped, direccionFoto);
 
+            if (jtApellido.getText().isEmpty() || jtNombre.getText().isEmpty() || jtTelefono.getText().isEmpty() || jtCorreo.getText().isEmpty() || jtDireccion.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos necesarios");
+            } else {
+                hd.modificarHuesped(dni, apellido, nombre, telefono, correo, direccion, estado, fotoHuesped, direccionFoto);
 
-            jlFoto.setIcon(null);
-            jlFoto.setText("*Sin foto*");
-            jtDireccionFoto.setText("");
-            jtApellido.setText("");
-            jtNombre.setText("");
-            jtDni.setText("");
-            jtTelefono.setText("");
-            jtDireccion.setText("");
-            jrEstado.setSelected(false);
-            jtCorreo.setText("");
-            jbGUARDAR.setEnabled(false);
-            jbCambiarFoto.setEnabled(false);
-            jtBusqueda.setText("");
+                jlFoto.setIcon(null);
+                jlFoto.setText("*Sin foto*");
+                jtDireccionFoto.setText("");
+                jtApellido.setText("");
+                jtNombre.setText("");
+                jtDni.setText("");
+                jtTelefono.setText("");
+                jtDireccion.setText("");
+                jrEstado.setSelected(false);
+                jtCorreo.setText("");
+                jbGUARDAR.setEnabled(false);
+                jbCambiarFoto.setEnabled(false);
+                jtBusqueda.setText("");
 
-            borrarFilas(modelo);
-            actualizarLista();
+                borrarFilas();
+                actualizarLista();
+            }
 
         } catch (Exception e) {
 
@@ -458,6 +479,38 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jbCambiarFotoActionPerformed
+
+    private void jtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyPressed
+        char x = evt.getKeyChar();
+        if (Character.isLetter(x) || Character.isISOControl(x)) {
+            jtApellido.setEditable(true);
+        } else {
+            jtApellido.setEditable(false);
+        }
+
+    }//GEN-LAST:event_jtApellidoKeyPressed
+
+    private void jtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyPressed
+        char x = evt.getKeyChar();
+        if (Character.isLetter(x) || Character.isISOControl(x)) {
+            jtNombre.setEditable(true);
+        } else {
+            jtNombre.setEditable(false);
+        }
+
+    }//GEN-LAST:event_jtNombreKeyPressed
+
+    private void jtTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyPressed
+
+        if (Character.isDigit(evt.getKeyChar()) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
+
+            jtTelefono.setEditable(true);
+
+        } else {
+
+            jtTelefono.setEditable(false);
+        }
+    }//GEN-LAST:event_jtTelefonoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -492,7 +545,7 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JPanel paneFoto;
     // End of variables declaration//GEN-END:variables
 
-    public void borrarFilas(DefaultTableModel modelo) {
+    public void borrarFilas() {
         int f = modelo.getRowCount() - 1;
         for (; f >= 0; f--) {
             modelo.removeRow(f);
@@ -500,18 +553,21 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
 
     }
 
+    public void borrarColumnas() {
+
+        modelo.setColumnCount(0);
+
+    }
+
     private void armarCabeceraTabla() {
-        
 
         modelo.addColumn("ID");
         modelo.addColumn("DNI");
         modelo.addColumn("Apellido");
         modelo.addColumn("Nombre");
         modelo.addColumn("Telefono");
-        
+
         jtableHuespedes.setModel(modelo);
-        
-        cabeceraArmada=true;
 
     }
 

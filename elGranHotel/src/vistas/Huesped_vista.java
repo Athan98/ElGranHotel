@@ -96,7 +96,7 @@ public class Huesped_vista extends javax.swing.JInternalFrame {
     private void PanePrincipalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PanePrincipalStateChanged
 //       
 //       
-        panelBH.borrarFilas(BusquedaHuesped.modelo);
+        panelBH.borrarFilas();
         panelBH.actualizarLista();
 
     }//GEN-LAST:event_PanePrincipalStateChanged

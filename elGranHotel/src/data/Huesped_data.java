@@ -3,21 +3,16 @@ package data;
 import entidades.*;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Huesped_data {
@@ -58,31 +53,7 @@ public class Huesped_data {
         }
     }
 
-//    public List listarHuespedesPorApellido(String apellido) {
-//        List<Huesped> huespedes = new ArrayList<>();
-//        String sql = "SELECT * FROM huesped WHERE apellido LIKE ?";
-//        try {
-//            PreparedStatement ps = conexion.prepareStatement(sql);
-//            ps.setString(1, apellido + "%");
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//
-//                h.setIdHuesped(rs.getInt("idHuesped"));
-//                h.setDni(rs.getString("dni"));
-//                h.setApellido(rs.getString("apellido"));
-//                h.setNombre(rs.getString("nombre"));
-//                h.setTelefono(rs.getString("telefono"));
-//                h.setCorreo(rs.getString("correo"));
-//                h.setCorreo(rs.getString("direccion"));
-//                h.setEstado(rs.getBoolean("estado"));
-//                huespedes.add(h);
-//            }
-//            ps.close();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error de sentencia");
-//        }
-//        return huespedes;
-//    }
+
     public List listarHuespedes() {
         List<Huesped> huespedes = new ArrayList<>();
         String sql = "SELECT * FROM huesped";
@@ -154,9 +125,7 @@ public class Huesped_data {
 
     public void modificarHuesped(String dni, String apellido, String nombre, String telefono, String correo, String direccion, boolean estado, FileInputStream fotoHuesped, String direccionFoto) {
         String sql = "UPDATE huesped SET apellido=?,nombre=?,telefono=?,correo=?,direccion=?,estado=?,fotoHuesped=?,nombreFotoHuesped=? WHERE dni=?";
-        System.out.println(direccionFoto);
-        System.out.println(fotoHuesped);
-        System.out.println("Pase por aca");
+
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
 

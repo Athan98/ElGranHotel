@@ -169,7 +169,8 @@ public class GestionPrecio extends javax.swing.JInternalFrame {
         modelo.addColumn("Cant. Personas");
         modelo.addColumn("Cant. Camas");
         modelo.addColumn("Tipo Cama");
-        modelo.addColumn("Precio por Noche");        
+        modelo.addColumn("Precio por Noche");  
+
         jtPrecios.setModel(modelo);
     }
     

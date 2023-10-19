@@ -13,6 +13,8 @@ import entidades.Habitacion;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Graphics;
+import java.awt.Image;
 
 /**
  *
@@ -65,10 +67,11 @@ public class Principal extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 521, Short.MAX_VALUE)
+            .addGap(0, 519, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Huespedes");
+        jMenu1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jMenuItem1.setText("Gestión Huespedes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +84,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Habitaciones");
+        jMenu2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jmGestionHab.setText("Gestión Habitaciones");
         jmGestionHab.addActionListener(new java.awt.event.ActionListener() {
@@ -93,8 +97,9 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jReservas.setText("Reservas");
+        jReservas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jmReservas.setText("Gestionar");
+        jmReservas.setText("Gestión Reservas");
         jmReservas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmReservasActionPerformed(evt);
@@ -201,11 +206,13 @@ public class Principal extends javax.swing.JFrame {
         List<Habitacion> listahab = new ArrayList<>();
         listahab = hd.listarHabitaciones();
         listareserva = rd.buscarReservasXfecha(LocalDate.now(), LocalDate.now());
+        rd.finReserva();
         
         for (Habitacion hab : listahab) {
-            hd.modificarDisponibilidad(hab.getNroHabitacion(), hab.getPiso(), false);        }
+            hd.modificarDisponibilidad(hab.getNroHabitacion(), hab.getPiso(), false);
+        }
         
-        for (ReservaHuesped reserva : listareserva) {
+        for (ReservaHuesped reserva : listareserva) {            
             hd.modificarDisponibilidad(reserva.getIdHabitacion().getNroHabitacion(), reserva.getIdHabitacion().getPiso(), true);
         }
         

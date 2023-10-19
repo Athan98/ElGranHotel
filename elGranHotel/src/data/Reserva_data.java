@@ -136,21 +136,14 @@ public class Reserva_data {
         
     }
     
-    public void finReserva (Huesped h, int id){
+    public void finReserva(){        
+        String sql ="UPDATE reserva r SET estado=0 WHERE r.fechasalida <= ?";
         
-        String sql ="UPDATE reserva r SET estado =0 WHERE r.idReserva=? AND r.idHuesped=? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,id);
-            ps.setInt(2, h.getIdHuesped());
+            ps.setDate(1,Date.valueOf(LocalDate.now()));
             ps.executeQuery();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(null,"Reserva finalizada!");
-                
-            }else{
-                JOptionPane.showMessageDialog(null,"No se encontró la reserva");
-            }
+            ResultSet rs = ps.getGeneratedKeys();           
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error de sentencia.");

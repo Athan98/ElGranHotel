@@ -11,8 +11,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 import javax.swing.JOptionPane;
@@ -63,14 +61,14 @@ public class Reserva_data {
 
     }
 
-    public List buscarReservaPorHuesped(int dni) {
+    public List buscarReservaPorHuesped(String dni) {
         List<ReservaHuesped> reservas = new ArrayList();
 
         String sql = "SELECT * FROM reserva r JOIN huesped h ON(r.idHuesped=h.idHuesped) JOIN habitacion hab ON (r.idHabitacion=hab.idHabitacion) JOIN tipohabitacion tp ON(hab.idTipoHabitacion = tp.idTipoHabitacion) WHERE h.dni=? ORDER BY r.idReserva";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, dni);
+            ps.setString(1, dni);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -176,7 +174,7 @@ public class Reserva_data {
                 huesped.setNombre(rs.getString("nombre"));
                 huesped.setCorreo(rs.getString("correo"));
                 huesped.setDireccion(rs.getString("direccion"));
-                huesped.setDni("dni");
+                huesped.setDni(rs.getString("dni"));
                 huesped.setTelefono(rs.getString("telefono"));
                 huesped.setIdHuesped(rs.getInt("idHuesped"));
                 r.setIdHuesped(huesped);

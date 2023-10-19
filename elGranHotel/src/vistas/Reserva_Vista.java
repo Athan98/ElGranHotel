@@ -12,11 +12,14 @@ package vistas;
 public class Reserva_Vista extends javax.swing.JInternalFrame {
 
     CrearReserva RE = new CrearReserva();
+    BuscarReservas BR = new BuscarReservas();
     
     public Reserva_Vista() {
         initComponents();
         PanelPrincipal.addTab("Crear Reserva", RE);
+        PanelPrincipal.addTab("Buscar Reservas", BR);
         PanelPrincipal.setSelectedComponent(RE);
+        
     }
 
     

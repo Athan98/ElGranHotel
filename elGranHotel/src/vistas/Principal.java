@@ -5,6 +5,15 @@
  */
 package vistas;
 
+import data.Conexion;
+import data.Habitacion_data;
+import data.Reserva_data;
+import entidades.ReservaHuesped;
+import entidades.Habitacion;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Usuario
@@ -14,8 +23,15 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    private Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
+    private Habitacion_data hd = new Habitacion_data(con);
+    private Reserva_data rd = new Reserva_data(con);
+    
+    
+    
     public Principal() {
         initComponents();
+        dispHab();
         this.setLocationRelativeTo(this);
         this.setExtendedState(Principal.MAXIMIZED_BOTH);
     }
@@ -39,6 +55,7 @@ public class Principal extends javax.swing.JFrame {
         jmReservas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("El Gran Hotel");
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -178,4 +195,19 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmGestionHab;
     private javax.swing.JMenuItem jmReservas;
     // End of variables declaration//GEN-END:variables
+
+    private void dispHab(){ //Cambia a "ocupadas" las habitaciones con reserva del dia
+        List<ReservaHuesped> listareserva = new ArrayList<>();        
+        List<Habitacion> listahab = new ArrayList<>();
+        listahab = hd.listarHabitaciones();
+        listareserva = rd.buscarReservasXfecha(LocalDate.now(), LocalDate.now());
+        
+        for (Habitacion hab : listahab) {
+            hd.modificarDisponibilidad(hab.getNroHabitacion(), hab.getPiso(), false);        }
+        
+        for (ReservaHuesped reserva : listareserva) {
+            hd.modificarDisponibilidad(reserva.getIdHabitacion().getNroHabitacion(), reserva.getIdHabitacion().getPiso(), true);
+        }
+        
+    }
 }

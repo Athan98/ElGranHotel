@@ -19,7 +19,6 @@ public class Habitacion_data {
 
     private Connection conexion = null;
 
-
     public Habitacion_data(Conexion con) {
 
         this.conexion = con.buscarConexion();
@@ -27,17 +26,18 @@ public class Habitacion_data {
     }
 
     public List listarHabitaciones() {
+        Habitacion h;
+        TipoHabitacion th;
         List<Habitacion> habitacionList = new ArrayList<>();
-        Habitacion h = new Habitacion();
-        TipoHabitacion th = new TipoHabitacion();
-        
+
         String sql = "SELECT * FROM habitacion h JOIN tipohabitacion th ON (h.idTipoHabitacion = th.idTipoHabitacion) ORDER BY h.idHabitacion";
-        
+
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 h = new Habitacion();
+                th = new TipoHabitacion();
                 h.setIdHabitacion(rs.getInt("idHabitacion"));
                 h.setNroHabitacion(rs.getInt("nroHabitacion"));
                 h.setPiso(rs.getInt("piso"));
@@ -50,7 +50,7 @@ public class Habitacion_data {
                 th.setTipoCamas(rs.getString("tipoCamas"));
                 th.setPrecioPorNoche(rs.getDouble("precioPorNoche"));
                 h.setIdTipoHabitacion(th);
-                habitacionList.add(h);                
+                habitacionList.add(h);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -89,7 +89,7 @@ public class Habitacion_data {
     public Habitacion buscarHabitacion(int nro, int piso) {
         Habitacion h = new Habitacion();
         TipoHabitacion th = new TipoHabitacion();
-        
+
         String sql = "SELECT * FROM habitacion h JOIN tipoHabitacion th ON (h.idTipoHabitacion = th.idTipoHabitacion) WHERE nroHabitacion = ? AND piso = ?";
 
         try {
@@ -119,12 +119,12 @@ public class Habitacion_data {
     }
 
     public void modificarHabitacion(TipoHabitacion tipo, int nro, int piso) {
-        
+
         String sql = "UPDATE habitacion SET idTipoHabitacion=? WHERE nroHabitacion=? AND piso=?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, tipo.getIdTipoHabitacion());            
+            ps.setInt(1, tipo.getIdTipoHabitacion());
             ps.setInt(2, nro);
             ps.setInt(3, piso);
             ps.executeUpdate();
@@ -137,27 +137,25 @@ public class Habitacion_data {
 
     public void modificarDisponibilidad(int nro, int piso, boolean ocupada) {
 
-        String sql = "UPDATE habitacion SET estado=? WHERE nroHabitacion=? AND piso=?";
+        String sql = "UPDATE habitacion SET ocupada=? WHERE nroHabitacion=? AND piso=?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setBoolean(1, ocupada);
             ps.setInt(2, nro);
             ps.setInt(3, piso);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "El estado de la habitacion ha sido actualizado");
+            ps.executeUpdate();            
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de sentencia");
         }
     }
 
-
     public List listarPorCategoria(TipoHabitacion tipo) {
         List<Habitacion> lista = new ArrayList();
-        Habitacion h = new Habitacion();
-        TipoHabitacion th = new TipoHabitacion();
-        
+        Habitacion h;
+        TipoHabitacion th;
+
         String sql = "SELECT * FROM habitacion h JOIN tipohabitacion th ON (h.idTipoHabitacion=th.idTipoHabitacion) WHERE th.idTipoHabitacion=?";
 
         try {
@@ -193,15 +191,15 @@ public class Habitacion_data {
         return lista;
 
     }
-    
-    public int contadorHabitXCategoria (String tipo){
+
+    public int contadorHabitXCategoria(String tipo) {
         List<Habitacion> lista = listarHabitaciones();
-        int cont=0;
-       for(int i = 0 ; i <= lista.size()-1 ; i++ ){
-           if(tipo==lista.get(i).getIdTipoHabitacion().getTipo()){
-               cont++;
-           }
-       }
+        int cont = 0;
+        for (int i = 0; i <= lista.size() - 1; i++) {
+            if (tipo == lista.get(i).getIdTipoHabitacion().getTipo()) {
+                cont++;
+            }
+        }
         return cont;
     }
 }

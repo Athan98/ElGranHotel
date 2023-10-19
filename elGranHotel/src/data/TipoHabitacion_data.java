@@ -23,8 +23,6 @@ import javax.swing.JOptionPane;
 public class TipoHabitacion_data {
     
     private Connection conexion=null;
-    private Habitacion h = new Habitacion();
-    private TipoHabitacion th = new TipoHabitacion();
     
     public TipoHabitacion_data(Conexion c) {
         this.conexion = c.buscarConexion();
@@ -32,7 +30,7 @@ public class TipoHabitacion_data {
     
     
     public TipoHabitacion tipoRandom(){
-        
+        TipoHabitacion th = new TipoHabitacion();
         List<TipoHabitacion> listatipos = new ArrayList<>();
         
         String sql = "SELECT * FROM tipohabitacion";
@@ -80,6 +78,7 @@ public class TipoHabitacion_data {
     }
     
     public List listaTipoHab(){
+        TipoHabitacion th = new TipoHabitacion();
         List<TipoHabitacion> lista = new ArrayList();
         
         try {

@@ -7,6 +7,7 @@ package vistas;
 
 import data.*;
 import entidades.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -57,6 +58,8 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jbAgregar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
 
+        jpUltHab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Piso:");
 
@@ -64,8 +67,18 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jLabel3.setText("Habitación:");
 
         jtPiso.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jtPiso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtPisoKeyPressed(evt);
+            }
+        });
 
         jtHab.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jtHab.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtHabKeyPressed(evt);
+            }
+        });
 
         jbBuscar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jbBuscar.setText("Buscar");
@@ -88,7 +101,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jpUltHabLayout.setHorizontalGroup(
             jpUltHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpUltHabLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,8 +126,10 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jbNueva))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
+
+        jpTipoHab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Tipo de Habitación:");
@@ -163,14 +178,6 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     .addGroup(jpTipoHabLayout.createSequentialGroup()
                         .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpTipoHabLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(54, 54, 54)
-                                .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jrbEstado))
-                        .addContainerGap(363, Short.MAX_VALUE))
-                    .addGroup(jpTipoHabLayout.createSequentialGroup()
-                        .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpTipoHabLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtTipoHab))
@@ -188,16 +195,24 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
                                 .addComponent(jtCantHues)))
-                        .addGap(137, 137, 137))))
+                        .addGap(85, 85, 85))
+                    .addGroup(jpTipoHabLayout.createSequentialGroup()
+                        .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jrbEstado)
+                            .addGroup(jpTipoHabLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(54, 54, 54)
+                                .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jpTipoHabLayout.setVerticalGroup(
             jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpTipoHabLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(28, 28, 28)
                 .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtTipoHab)
                     .addComponent(jLabel5)
@@ -209,10 +224,12 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(jtTipoCama)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(jrbEstado)
-                .addContainerGap())
+                .addGap(19, 19, 19))
         );
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jbAgregar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jbAgregar.setText("Agregar Habitación");
@@ -237,20 +254,20 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(100, 100, 100)
                 .addComponent(jbAgregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbModificar)
-                .addGap(103, 103, 103))
+                .addGap(95, 95, 95))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAgregar)
                     .addComponent(jbModificar))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,12 +285,13 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jpUltHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpTipoHab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -359,6 +377,22 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jtPisoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPisoKeyPressed
+        if (Character.isDigit(evt.getKeyChar()) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
+            jtPiso.setEditable(true);
+        } else {
+            jtPiso.setEditable(false);
+        }
+    }//GEN-LAST:event_jtPisoKeyPressed
+
+    private void jtHabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtHabKeyPressed
+        if (Character.isDigit(evt.getKeyChar()) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
+            jtHab.setEditable(true);
+        } else {
+            jtHab.setEditable(false);
+        }
+    }//GEN-LAST:event_jtHabKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

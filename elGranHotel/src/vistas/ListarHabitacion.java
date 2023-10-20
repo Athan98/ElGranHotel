@@ -160,7 +160,7 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
             modelo.setRowCount(0);
             List<Habitacion> listahab = new ArrayList<>();
             listahab = hd.listarHabitaciones();
-            System.out.println(listahab);
+            
             for (Habitacion hab : listahab) {
                 
                 modelo.addRow(new Object[]{

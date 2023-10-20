@@ -15,7 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.ImageIcon;
 
+//import java.util.Calendar;
+//import java.util.GregorianCalendar;
 /**
  *
  * @author Usuario
@@ -28,14 +31,39 @@ public class Principal extends javax.swing.JFrame {
     private Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
     private Habitacion_data hd = new Habitacion_data(con);
     private Reserva_data rd = new Reserva_data(con);
-    
-    
-    
+
     public Principal() {
         initComponents();
-        dispHab();
+        actualizarReservas();
         this.setLocationRelativeTo(this);
         this.setExtendedState(Principal.MAXIMIZED_BOTH);
+        /*
+        new Thread() { // RELOJ TIEMPO REAL (Consume mucho)
+
+            public void run() {                
+
+                while (true) {
+                    Calendar cal = new GregorianCalendar();
+                    int anio = cal.get(Calendar.YEAR);
+                    int mes = cal.get(Calendar.MONTH);
+                    int dia = cal.get(Calendar.DAY_OF_MONTH);
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+
+                    int AM_PM = cal.get(Calendar.AM_PM);
+                    String Am_Pm = "";
+                    if (AM_PM == 1) {
+
+                        Am_Pm = "PM";
+                    } else {
+                        Am_Pm = "AM";
+                    }
+                    setTitle("El Gran Hotel " + anio + "-" + mes + "-" + dia + "-" + hour + ":" + min + ":" + sec + " " + Am_Pm);
+                }
+            }
+        }.start();
+         */
     }
 
     /**
@@ -47,7 +75,12 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/texturaHormigon.jpg")); Image image = icon.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -57,7 +90,8 @@ public class Principal extends javax.swing.JFrame {
         jmReservas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("El Gran Hotel");
+        setTitle("El gran hotel" + LocalDate.now().toString()
+        );
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -132,7 +166,7 @@ public class Principal extends javax.swing.JFrame {
         hab.setVisible(true);
         escritorio.add(hab);
         escritorio.moveToFront(hab);
-        hab.setLocation((escritorio.getWidth() - hab.getWidth())/2, (escritorio.getHeight() - hab.getHeight())/2);
+        hab.setLocation((escritorio.getWidth() - hab.getWidth()) / 2, (escritorio.getHeight() - hab.getHeight()) / 2);
     }//GEN-LAST:event_jmGestionHabActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -142,7 +176,7 @@ public class Principal extends javax.swing.JFrame {
         h.setVisible(true);
         escritorio.add(h);
         escritorio.moveToFront(h);
-        h.setLocation((escritorio.getWidth() - h.getWidth())/2, (escritorio.getHeight() - h.getHeight())/2);
+        h.setLocation((escritorio.getWidth() - h.getWidth()) / 2, (escritorio.getHeight() - h.getHeight()) / 2);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jmReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmReservasActionPerformed
@@ -152,7 +186,7 @@ public class Principal extends javax.swing.JFrame {
         rv.setVisible(true);
         escritorio.add(rv);
         escritorio.moveToFront(rv);
-        rv.setLocation((escritorio.getWidth() - rv.getWidth())/2, (escritorio.getHeight() - rv.getHeight())/2);
+        rv.setLocation((escritorio.getWidth() - rv.getWidth()) / 2, (escritorio.getHeight() - rv.getHeight()) / 2);
     }//GEN-LAST:event_jmReservasActionPerformed
 
     /**
@@ -201,20 +235,23 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmReservas;
     // End of variables declaration//GEN-END:variables
 
-    private void dispHab(){ //Cambia a "ocupadas" las habitaciones con reserva del dia
-        List<ReservaHuesped> listareserva = new ArrayList<>();        
+    private void actualizarReservas() { //Cambia a "ocupadas" las habitaciones con reserva del dia
+        List<ReservaHuesped> listareserva = new ArrayList<>();
         List<Habitacion> listahab = new ArrayList<>();
+
         listahab = hd.listarHabitaciones();
         listareserva = rd.buscarReservasXfecha(LocalDate.now(), LocalDate.now());
+
         rd.finReserva();
-        
+
         for (Habitacion hab : listahab) {
             hd.modificarDisponibilidad(hab.getNroHabitacion(), hab.getPiso(), false);
         }
-        
-        for (ReservaHuesped reserva : listareserva) {            
+
+        for (ReservaHuesped reserva : listareserva) {
             hd.modificarDisponibilidad(reserva.getIdHabitacion().getNroHabitacion(), reserva.getIdHabitacion().getPiso(), true);
         }
-        
+
     }
+
 }

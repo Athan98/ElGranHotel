@@ -117,12 +117,13 @@ public class Reserva_data {
         return reservas;
     }
     
-    public void cancelarReserva (ReservaHuesped r){
-        String sql = "DELETE FROM reserva r WHERE idReserva=?";
+    public void cancelarReserva (int idReserva){
+        String sql = "DELETE FROM reserva  WHERE idReserva=?";
         
         try {   
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, r.getIdReserva());
+            ps.setInt(1, idReserva);
+            ps.executeUpdate();
            
             JOptionPane.showMessageDialog(null,"Reserva cancelada.");
             

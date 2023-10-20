@@ -365,11 +365,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     private void jtDNIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyPressed
 
         if (Character.isDigit(evt.getKeyChar()) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
-
             jtDNI.setEditable(true);
-
         } else {
-
             jtDNI.setEditable(false);
         }
     }//GEN-LAST:event_jtDNIKeyPressed

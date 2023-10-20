@@ -64,12 +64,14 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jlFOTOCARGADA = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jbCARGAR1 = new javax.swing.JButton();
 
         jLabel8.setText("jLabel8");
 
         setPreferredSize(new java.awt.Dimension(800, 650));
 
-        jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("D.N.I. :");
 
@@ -93,31 +95,59 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Direccion :");
 
+        jtDNI.setColumns(20);
+        jtDNI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtDNIMouseClicked(evt);
+            }
+        });
         jtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtDNIKeyPressed(evt);
             }
         });
 
+        jtAPELLIDO.setColumns(20);
+        jtAPELLIDO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtAPELLIDOMouseClicked(evt);
+            }
+        });
         jtAPELLIDO.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtAPELLIDOKeyPressed(evt);
             }
         });
 
+        jtNOMBRE.setColumns(20);
+        jtNOMBRE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtNOMBREMouseClicked(evt);
+            }
+        });
         jtNOMBRE.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtNOMBREKeyPressed(evt);
             }
         });
 
+        jtTELEFONO.setColumns(20);
+        jtTELEFONO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTELEFONOMouseClicked(evt);
+            }
+        });
         jtTELEFONO.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtTELEFONOKeyPressed(evt);
             }
         });
 
-        jbCARGAR.setFont(new java.awt.Font("Bauhaus 93", 1, 18)); // NOI18N
+        jtDIRECCION.setColumns(20);
+
+        jtCORREO.setColumns(20);
+
+        jbCARGAR.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jbCARGAR.setForeground(new java.awt.Color(49, 147, 49));
         jbCARGAR.setText("CARGAR");
         jbCARGAR.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +165,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         });
 
         jtCARGARFOTO.setEditable(false);
+        jtCARGARFOTO.setColumns(20);
 
         jLabel7.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -163,11 +194,23 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         );
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/addHuesped.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar.png"))); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("(Opcional)");
+
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/addHuesped.png"))); // NOI18N
+
+        jbCARGAR1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        jbCARGAR1.setForeground(new java.awt.Color(51, 51, 51));
+        jbCARGAR1.setText("Limpiar campos");
+        jbCARGAR1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCARGAR1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,11 +247,15 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jtCARGARFOTO)
-                            .addComponent(jtCORREO)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbCARGAR1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtCARGARFOTO, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtCORREO, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbCARGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -217,7 +264,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbCARGARFOTO)
                         .addGap(77, 77, 77)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,8 +307,12 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbCARGAR, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(172, 172, 172))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbCARGAR1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(117, 117, 117))
         );
 
         pack();
@@ -346,7 +397,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void jtAPELLIDOKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtAPELLIDOKeyPressed
         char x = evt.getKeyChar();
-        if (Character.isLetter(x) || Character.isISOControl(x)) {
+        if (Character.isLetter(x) || Character.isISOControl(x) || (evt.getKeyChar() == ' ')) {
             jtAPELLIDO.setEditable(true);
         } else {
             jtAPELLIDO.setEditable(false);
@@ -355,7 +406,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
     private void jtNOMBREKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNOMBREKeyPressed
         char x = evt.getKeyChar();
-        if (Character.isLetter(x) || Character.isISOControl(x)) {
+        if (Character.isLetter(x) || Character.isISOControl(x) || (evt.getKeyChar() == ' ')) {
             jtNOMBRE.setEditable(true);
         } else {
             jtNOMBRE.setEditable(false);
@@ -382,10 +433,39 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jtTELEFONOKeyPressed
 
+    private void jtDNIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDNIMouseClicked
+        jtDNI.setEditable(true);
+    }//GEN-LAST:event_jtDNIMouseClicked
+
+    private void jtAPELLIDOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtAPELLIDOMouseClicked
+        jtAPELLIDO.setEditable(true);
+    }//GEN-LAST:event_jtAPELLIDOMouseClicked
+
+    private void jtNOMBREMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtNOMBREMouseClicked
+        jtNOMBRE.setEditable(true);
+    }//GEN-LAST:event_jtNOMBREMouseClicked
+
+    private void jtTELEFONOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTELEFONOMouseClicked
+        jtTELEFONO.setEditable(true);
+    }//GEN-LAST:event_jtTELEFONOMouseClicked
+
+    private void jbCARGAR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCARGAR1ActionPerformed
+        jtAPELLIDO.setText("");
+        jtCARGARFOTO.setText("");
+        jtCORREO.setText("");
+        jtDIRECCION.setText("");
+        jtDNI.setText("");
+        jtNOMBRE.setText("");
+        jtTELEFONO.setText("");
+        jlFOTOCARGADA.setIcon(null);
+        jlFOTOCARGADA.setText("*Sin foto*");
+    }//GEN-LAST:event_jbCARGAR1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -395,6 +475,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JButton jbCARGAR;
+    private javax.swing.JButton jbCARGAR1;
     private javax.swing.JButton jbCARGARFOTO;
     private javax.swing.JLabel jlFOTOCARGADA;
     private javax.swing.JTextField jtAPELLIDO;

@@ -31,7 +31,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
@@ -69,11 +69,16 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jtCARGARFOTO" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jtCORREO" alignment="1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel9" min="-2" pref="52" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jbCARGAR1" min="-2" pref="175" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jtCARGARFOTO" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jtCORREO" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel11" min="-2" pref="52" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jbCARGAR" min="-2" pref="175" max="-2" attributes="0"/>
                           </Group>
@@ -88,7 +93,7 @@
                       <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -143,9 +148,14 @@
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jbCARGAR" pref="49" max="32767" attributes="0"/>
-                  <Component id="jLabel9" max="32767" attributes="0"/>
+                  <Component id="jLabel11" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel9" min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="jbCARGAR1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -154,7 +164,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Berlin Sans FB Demi" size="18" style="0"/>
+          <Font name="Berlin Sans FB Demi" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="D.N.I. :"/>
@@ -206,33 +216,55 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtDNI">
+      <Properties>
+        <Property name="columns" type="int" value="20"/>
+      </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtDNIMouseClicked"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtDNIKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtAPELLIDO">
+      <Properties>
+        <Property name="columns" type="int" value="20"/>
+      </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtAPELLIDOMouseClicked"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtAPELLIDOKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtNOMBRE">
+      <Properties>
+        <Property name="columns" type="int" value="20"/>
+      </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtNOMBREMouseClicked"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtNOMBREKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtTELEFONO">
+      <Properties>
+        <Property name="columns" type="int" value="20"/>
+      </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtTELEFONOMouseClicked"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtTELEFONOKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtDIRECCION">
+      <Properties>
+        <Property name="columns" type="int" value="20"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtCORREO">
+      <Properties>
+        <Property name="columns" type="int" value="20"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbCARGAR">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Bauhaus 93" size="18" style="1"/>
+          <Font name="Berlin Sans FB Demi" size="18" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="31" green="93" red="31" type="rgb"/>
@@ -257,6 +289,7 @@
     <Component class="javax.swing.JTextField" name="jtCARGARFOTO">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="columns" type="int" value="20"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
@@ -311,7 +344,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/addHuesped.png"/>
+          <Image iconType="3" name="/icons/limpiar.png"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -326,6 +359,31 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="(Opcional)"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/icons/addHuesped.png"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="GestionHuesped_jLabel9"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbCARGAR1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Berlin Sans FB Demi" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Limpiar campos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCARGAR1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

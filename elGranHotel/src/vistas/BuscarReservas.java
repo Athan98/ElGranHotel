@@ -24,6 +24,7 @@ public class BuscarReservas extends javax.swing.JInternalFrame {
 
     DefaultTableModel modeloH = new DefaultTableModel() {
 
+        @Override
         public boolean isCellEditable(int row, int column) {
             return false;
         }
@@ -31,6 +32,7 @@ public class BuscarReservas extends javax.swing.JInternalFrame {
     };
     DefaultTableModel modeloF = new DefaultTableModel() {
 
+        @Override
         public boolean isCellEditable(int row, int column) {
             return false;
         }

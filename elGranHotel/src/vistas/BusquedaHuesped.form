@@ -251,12 +251,12 @@
                       <Component id="jLabel10" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jrEstado" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jbLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbGUARDAR" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -479,6 +479,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="EXPORTAR A EXCEL"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

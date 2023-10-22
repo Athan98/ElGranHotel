@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import controladorExportar.Controlador;
 import data.Conexion;
 import data.Huesped_data;
 import entidades.Huesped;
@@ -23,7 +24,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class BusquedaHuesped extends javax.swing.JInternalFrame {
 
-    public static DefaultTableModel modelo = new DefaultTableModel();
+    public static DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
 
     Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
     Huesped_data hd = new Huesped_data(con);
@@ -320,11 +326,11 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jrEstado))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbLimpiar)
                     .addComponent(jbGUARDAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(68, 68, 68))
+                .addGap(88, 88, 88))
         );
 
         jbLlenarCampos.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
@@ -337,6 +343,11 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         jButton1.setText("EXPORTAR A EXCEL");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -586,6 +597,18 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
         jbCambiarFoto.setEnabled(false);
         jtBusqueda.setText("");
     }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Controlador obj;
+        try {
+            obj = new Controlador();
+            obj.exportarExcel(jtableHuespedes);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error de archivo");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "ERROR: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,24 +10,19 @@ import data.Habitacion_data;
 import data.Reserva_data;
 import entidades.ReservaHuesped;
 import entidades.Habitacion;
+import java.awt.Dimension;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 
-//import java.util.Calendar;
-//import java.util.GregorianCalendar;
-/**
- *
- * @author Usuario
- */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
     private Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
     private Habitacion_data hd = new Habitacion_data(con);
     private Reserva_data rd = new Reserva_data(con);
@@ -35,35 +30,15 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         actualizarReservas();
+        
         this.setLocationRelativeTo(this);
         this.setExtendedState(Principal.MAXIMIZED_BOTH);
-        /*
-        new Thread() { // RELOJ TIEMPO REAL (Consume mucho)
-
-            public void run() {                
-
-                while (true) {
-                    Calendar cal = new GregorianCalendar();
-                    int anio = cal.get(Calendar.YEAR);
-                    int mes = cal.get(Calendar.MONTH);
-                    int dia = cal.get(Calendar.DAY_OF_MONTH);
-                    int hour = cal.get(Calendar.HOUR);
-                    int min = cal.get(Calendar.MINUTE);
-                    int sec = cal.get(Calendar.SECOND);
-
-                    int AM_PM = cal.get(Calendar.AM_PM);
-                    String Am_Pm = "";
-                    if (AM_PM == 1) {
-
-                        Am_Pm = "PM";
-                    } else {
-                        Am_Pm = "AM";
-                    }
-                    setTitle("El Gran Hotel " + anio + "-" + mes + "-" + dia + "-" + hour + ":" + min + ":" + sec + " " + Am_Pm);
-                }
-            }
-        }.start();
-         */
+        //CENTRAR PANE DE CHECK IN - CHECK OUT
+ 
+        centrarPaneCheck();
+        actualizarFechaHora();
+        
+        
     }
 
     /**
@@ -81,6 +56,8 @@ public class Principal extends javax.swing.JFrame {
                 g.drawImage(image,0,0,getWidth(),getHeight(),this);
             }
         };
+        jlFechaHora = new javax.swing.JLabel();
+        jpCheck = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -93,15 +70,51 @@ public class Principal extends javax.swing.JFrame {
         setTitle("El gran hotel " + LocalDate.now().toString()
         );
 
+        jlFechaHora.setBackground(new java.awt.Color(51, 51, 51));
+        jlFechaHora.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
+        jlFechaHora.setForeground(new java.awt.Color(255, 153, 51));
+        jlFechaHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFechaHora.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jlFechaHora.setOpaque(true);
+
+        jpCheck.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpCheck.setPreferredSize(new java.awt.Dimension(600, 500));
+
+        javax.swing.GroupLayout jpCheckLayout = new javax.swing.GroupLayout(jpCheck);
+        jpCheck.setLayout(jpCheckLayout);
+        jpCheckLayout.setHorizontalGroup(
+            jpCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 594, Short.MAX_VALUE)
+        );
+        jpCheckLayout.setVerticalGroup(
+            jpCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 494, Short.MAX_VALUE)
+        );
+
+        escritorio.setLayer(jlFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jpCheck, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 902, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addComponent(jpCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
         jMenu1.setText("Huespedes");
@@ -231,8 +244,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jReservas;
+    private javax.swing.JLabel jlFechaHora;
     private javax.swing.JMenuItem jmGestionHab;
     private javax.swing.JMenuItem jmReservas;
+    private javax.swing.JPanel jpCheck;
     // End of variables declaration//GEN-END:variables
 
     private void actualizarReservas() { //Cambia a "ocupadas" las habitaciones con reserva del dia
@@ -254,4 +269,67 @@ public class Principal extends javax.swing.JFrame {
 
     }
 
+    //HILO PARA ESTABLECER Y ACTUALIZAR FECHA Y HORA
+    private void actualizarFechaHora() {
+        Thread reloj = new Thread(() -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+            while (true) {
+                String fechaHora = sdf.format(new Date());
+                SwingUtilities.invokeLater(() -> jlFechaHora.setText(fechaHora));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        reloj.start();
+    }
+
+    //OTRO HILO DE FECHA Y HORA. PERO CONSUME DEMASIADO
+    /*
+        new Thread() { // RELOJ TIEMPO REAL (Consume mucho)
+
+            public void run() {                
+
+                while (true) {
+                    Calendar cal = new GregorianCalendar();
+                    int anio = cal.get(Calendar.YEAR);
+                    int mes = cal.get(Calendar.MONTH);
+                    int dia = cal.get(Calendar.DAY_OF_MONTH);
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+
+                    int AM_PM = cal.get(Calendar.AM_PM);
+                    String Am_Pm = "";
+                    if (AM_PM == 1) {
+
+                        Am_Pm = "PM";
+                    } else {
+                        Am_Pm = "AM";
+                    }
+                    setTitle("El Gran Hotel " + anio + "-" + mes + "-" + dia + "-" + hour + ":" + min + ":" + sec + " " + Am_Pm);
+                }
+            }
+        }.start();
+     */
+    private void centrarPaneCheck() {
+        
+        Dimension d=new Dimension(500, 600);
+        
+        jpCheck.setPreferredSize(d); 
+
+        int desktopWidth = escritorio.getWidth();
+        int desktopHeight = escritorio.getHeight();
+        int panelWidth = 500;
+        int panelHeight = 600;
+
+        int x = (desktopWidth - panelWidth) / 2;
+        int y = (desktopHeight - panelHeight) / 2;
+
+        jpCheck.setLocation(x, y);
+    }
 }

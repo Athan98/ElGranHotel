@@ -31,15 +31,10 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         actualizarReservas();
         this.setExtendedState(Principal.MAXIMIZED_BOTH);
-        centrarPaneCheck();
+//        centrarPaneCheck();
         actualizarFechaHora();
-        System.out.println(escritorio.getWidth());
-        System.out.println(escritorio.getHeight());
-        
-        
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -50,7 +45,6 @@ public class Principal extends javax.swing.JFrame {
                 g.drawImage(image,0,0,getWidth(),getHeight(),this);
             }
         };
-        jlFechaHora = new javax.swing.JLabel();
         jpCheck = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -68,20 +62,12 @@ public class Principal extends javax.swing.JFrame {
         jmReservas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("El gran hotel " + LocalDate.now().toString()
+        setTitle("El gran hotel "
         );
-
-        jlFechaHora.setBackground(new java.awt.Color(51, 51, 51));
-        jlFechaHora.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
-        jlFechaHora.setForeground(new java.awt.Color(255, 153, 51));
-        jlFechaHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlFechaHora.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jlFechaHora.setOpaque(true);
 
         jpCheck.setBackground(new java.awt.Color(51, 51, 51));
         jpCheck.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jpCheck.setForeground(new java.awt.Color(51, 51, 51));
-        jpCheck.setPreferredSize(new java.awt.Dimension(600, 500));
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
@@ -185,7 +171,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        escritorio.setLayer(jlFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jpCheck, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
@@ -193,22 +178,14 @@ public class Principal extends javax.swing.JFrame {
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jpCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addGap(173, 173, 173)
+                .addComponent(jpCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jpCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addComponent(jpCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(51, 51, 51));
@@ -282,14 +259,17 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(escritorio)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmGestionHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionHabActionPerformed
-
+        escritorio.removeAll();
         escritorio.repaint();
         Habitacion_vista hab = new Habitacion_vista();
         hab.setVisible(true);
@@ -299,7 +279,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmGestionHabActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
+        escritorio.removeAll();
         escritorio.repaint();
         Huesped_vista h = new Huesped_vista();
         h.setVisible(true);
@@ -309,7 +289,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jmReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmReservasActionPerformed
-
+        escritorio.removeAll();
         escritorio.repaint();
         Reserva_Vista rv = new Reserva_Vista();
         rv.setVisible(true);
@@ -367,7 +347,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JLabel jlFechaHora;
     private javax.swing.JMenuItem jmGestionHab;
     private javax.swing.JMenuItem jmReservas;
     private javax.swing.JPanel jpCheck;
@@ -399,7 +378,7 @@ public class Principal extends javax.swing.JFrame {
 
             while (true) {
                 String fechaHora = sdf.format(new Date());
-                SwingUtilities.invokeLater(() -> jlFechaHora.setText(fechaHora));
+                SwingUtilities.invokeLater(() -> setTitle("El Gran Hotel "+fechaHora));
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -411,17 +390,16 @@ public class Principal extends javax.swing.JFrame {
         reloj.start();
     }
 
-
     private void centrarPaneCheck() {
-        
-        Dimension d=new Dimension(500, 600);
-        
-        jpCheck.setPreferredSize(d); 
+
+        Dimension d = new Dimension(500, 600);
+
+        jpCheck.setPreferredSize(d);
 
         int desktopWidth = escritorio.getWidth();
         int desktopHeight = escritorio.getHeight();
-        int panelWidth = 500;
-        int panelHeight = 600;
+        int panelWidth = jpCheck.getWidth();
+        int panelHeight = jpCheck.getHeight();
 
         int x = (desktopWidth - panelWidth) / 2;
         int y = (desktopHeight - panelHeight) / 2;

@@ -32,6 +32,7 @@ public class Reserva_Vista extends javax.swing.JInternalFrame {
         PanelPrincipal = new javax.swing.JTabbedPane();
 
         setClosable(true);
+        setPreferredSize(null);
 
         Titulo.setBackground(new java.awt.Color(120, 93, 39));
 

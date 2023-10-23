@@ -37,7 +37,8 @@ public class Huesped_vista extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
-        setPreferredSize(new java.awt.Dimension(800, 700));
+        setResizable(true);
+        setPreferredSize(null);
 
         PanePrincipal.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {

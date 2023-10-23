@@ -69,8 +69,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
 
         jLabel8.setText("jLabel8");
 
-        setPreferredSize(new java.awt.Dimension(800, 650));
-
         jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("D.N.I. :");

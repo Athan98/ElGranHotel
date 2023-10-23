@@ -84,7 +84,6 @@ public class BusquedaHuesped extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTree1);
 
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(800, 700));
 
         jtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {

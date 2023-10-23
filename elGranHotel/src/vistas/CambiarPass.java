@@ -176,7 +176,7 @@ public class CambiarPass extends javax.swing.JInternalFrame {
         int intentos = 3;
         do {
             String entrada = JOptionPane.showInputDialog(this, "Ingrese la respuesta");
-            if (entrada != user.getRespuesta() || entrada == null) {
+            if (!entrada.equals(user.getRespuesta())) {
                 JOptionPane.showMessageDialog(null, "Respuesta incorrecta. Le quedan " + intentos + " intentos");
                 intentos = intentos - 1;
 

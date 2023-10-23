@@ -96,6 +96,8 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         jlMontoTotal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
+        setAutoscrolls(true);
+
         PanelHabitacion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jtHab.setModel(new javax.swing.table.DefaultTableModel(

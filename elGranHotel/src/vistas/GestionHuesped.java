@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -31,6 +32,7 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
     public GestionHuesped() {
         initComponents();
         paneFoto.setVisible(true);
+
 
     }
 
@@ -68,6 +70,8 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jbCARGAR1 = new javax.swing.JButton();
 
         jLabel8.setText("jLabel8");
+
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -439,10 +443,6 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jtAPELLIDO.setEditable(true);
     }//GEN-LAST:event_jtAPELLIDOMouseClicked
 
-    private void jtNOMBREMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtNOMBREMouseClicked
-        jtNOMBRE.setEditable(true);
-    }//GEN-LAST:event_jtNOMBREMouseClicked
-
     private void jtTELEFONOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTELEFONOMouseClicked
         jtTELEFONO.setEditable(true);
     }//GEN-LAST:event_jtTELEFONOMouseClicked
@@ -458,6 +458,10 @@ public class GestionHuesped extends javax.swing.JInternalFrame {
         jlFOTOCARGADA.setIcon(null);
         jlFOTOCARGADA.setText("*Sin foto*");
     }//GEN-LAST:event_jbCARGAR1ActionPerformed
+
+    private void jtNOMBREMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtNOMBREMouseClicked
+        jtNOMBRE.setEditable(true);
+    }//GEN-LAST:event_jtNOMBREMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

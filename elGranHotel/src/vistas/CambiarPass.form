@@ -137,10 +137,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jbVerificarRespuesta" pref="153" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jbEstablecerNuevaPass" pref="153" max="32767" attributes="0"/>
-                                  <Component id="jtNuevaContraseña" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jbEstablecerNuevaPass" pref="153" max="32767" attributes="0"/>
+                              <Component id="jtNuevaContraseña" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="116" max="32767" attributes="0"/>
                       </Group>

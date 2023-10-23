@@ -8,6 +8,8 @@ package vistas;
 import data.Conexion;
 import data.User_data;
 import entidades.User;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,8 +19,8 @@ import javax.swing.JOptionPane;
 public class Register extends javax.swing.JFrame {
 
     Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
-    User_data usd=new User_data(con);
-    
+    User_data usd = new User_data(con);
+
     public Register() {
         initComponents();
         this.setLocationRelativeTo(this);
@@ -72,6 +74,11 @@ public class Register extends javax.swing.JFrame {
         jtUserRegister.setBackground(new java.awt.Color(102, 102, 102));
         jtUserRegister.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jtUserRegister.setForeground(new java.awt.Color(0, 0, 0));
+        jtUserRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtUserRegisterActionPerformed(evt);
+            }
+        });
 
         jtRespuestaSeguridad.setBackground(new java.awt.Color(102, 102, 102));
         jtRespuestaSeguridad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -185,35 +192,44 @@ public class Register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbVolverLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverLoginActionPerformed
-       
+
         this.setVisible(false);
-        Login log=new Login();
+        Login log = new Login();
         log.setVisible(true);
     }//GEN-LAST:event_jbVolverLoginActionPerformed
 
     private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
-       
-        if(jtPassRegister.getText().isEmpty() || jtUserRegister.getText().isEmpty() || jtRespuestaSeguridad.getText().isEmpty() || jcPreguntas.getSelectedIndex()==-1){
-        
+
+        if (jtPassRegister.getText().isEmpty() || jtUserRegister.getText().isEmpty() || jtRespuestaSeguridad.getText().isEmpty() || jcPreguntas.getSelectedIndex() == -1) {
+
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
-        }else{
-        String user=jtUserRegister.getText();
-        String pass=jtPassRegister.getText();
-        String pregunta=jcPreguntas.getSelectedItem().toString();
-        String respuesta=jtRespuestaSeguridad.getText();
-        
-        User userAgregar=new User(user,pass,pregunta,respuesta);
-        
-        usd.agregarUser(userAgregar);}
-        
-        jtUserRegister.setText("");
-        jtPassRegister.setText("");
-        jcPreguntas.setSelectedIndex(-1);
-        jtRespuestaSeguridad.setText("");
-        
-        
-       
+        } else {
+            String user = jtUserRegister.getText();
+            String pass = jtPassRegister.getText();
+            String pregunta = jcPreguntas.getSelectedItem().toString();
+            String respuesta = jtRespuestaSeguridad.getText();
+
+            User userAgregar = new User(user, pass, pregunta, respuesta);
+            
+            User valUser=buscarUser(jtUserRegister.getText());
+
+            if (valUser!=null && valUser.getUser().equals(userAgregar.getUser())) {
+                JOptionPane.showMessageDialog(null, "El usuario ya existe");
+            } else {
+                usd.agregarUser(userAgregar);
+                jtUserRegister.setText("");
+                jtPassRegister.setText("");
+                jcPreguntas.setSelectedIndex(-1);
+                jtRespuestaSeguridad.setText("");
+            }
+        }
+
+
     }//GEN-LAST:event_jbRegistrarActionPerformed
+
+    private void jtUserRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtUserRegisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtUserRegisterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,4 +280,25 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField jtRespuestaSeguridad;
     private javax.swing.JTextField jtUserRegister;
     // End of variables declaration//GEN-END:variables
+
+    public User buscarUser(String userIngresado) {
+
+        List<User> userList = usd.listarUsers();
+
+        User user = null;
+
+        for (User u : userList) {
+            if (u.getUser().equals(userIngresado)) {
+                user = new User();
+                user.setUser(u.getUser());
+                user.setPass(u.getPass());
+                user.setPregunta(u.getPregunta());
+                user.setRespuesta(u.getRespuesta());
+                break;
+            }
+        }
+
+        return user;
+
+    }
 }

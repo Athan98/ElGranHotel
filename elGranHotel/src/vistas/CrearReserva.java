@@ -244,7 +244,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         jLabel20.setText("Correo:");
 
         jlNombre.setFont(new java.awt.Font("Gill Sans MT", 1, 14)); // NOI18N
-        jlNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jlNombre.setForeground(new java.awt.Color(0, 0, 0));
         jlNombre.setText("------------------------");
 
         jtDNI.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -255,15 +255,15 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         });
 
         jlApellido.setFont(new java.awt.Font("Gill Sans MT", 1, 14)); // NOI18N
-        jlApellido.setForeground(new java.awt.Color(255, 255, 255));
+        jlApellido.setForeground(new java.awt.Color(0, 0, 0));
         jlApellido.setText("------------------------");
 
         jlDireccion.setFont(new java.awt.Font("Gill Sans MT", 1, 14)); // NOI18N
-        jlDireccion.setForeground(new java.awt.Color(255, 255, 255));
+        jlDireccion.setForeground(new java.awt.Color(0, 0, 0));
         jlDireccion.setText("------------------------");
 
         jlCorreo.setFont(new java.awt.Font("Gill Sans MT", 1, 14)); // NOI18N
-        jlCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        jlCorreo.setForeground(new java.awt.Color(0, 0, 0));
         jlCorreo.setText("------------------------");
 
         jbBuscarDNI.setText("Buscar");
@@ -277,7 +277,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         jLabel21.setText("Telefono:");
 
         jlTelefono.setFont(new java.awt.Font("Gill Sans MT", 1, 14)); // NOI18N
-        jlTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        jlTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jlTelefono.setText("------------------------");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dni.png"))); // NOI18N
@@ -410,7 +410,9 @@ public class CrearReserva extends javax.swing.JInternalFrame {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jbReservar.setText("Realizar Reservas");
+        jbReservar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jbReservar.setText("Realizar Reserva/s");
+        jbReservar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbReservarActionPerformed(evt);
@@ -620,8 +622,13 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         }
         actualizarReservas();
         borrarFilas(modeloR);
+        borrarFilas(modeloH);
+        jtCantPersonas.setText("");jlApellido.setText("");jlNombre.setText("");jlTelefono.setText("");jlCorreo.setText("");jlDireccion.setText("");jlMontoTotal.setText("");
+        jdIngreso.setDate(null);
+        jdSalida.setDate(null);
         
         llenarTablas(Principal.modeloCI,Principal.modeloCO);
+        
 
 
     }//GEN-LAST:event_jbReservarActionPerformed

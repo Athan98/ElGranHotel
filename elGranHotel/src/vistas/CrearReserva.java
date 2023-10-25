@@ -46,6 +46,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
 
     public CrearReserva() {
         initComponents();
+        actualizarReservas();
         cargarCabeceras();
     }
 
@@ -617,7 +618,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
                     ingreso, salida, Integer.parseInt(jtCantPersonas.getText()));
 
         }
-
+        actualizarReservas();
         borrarFilas(modeloR);
 
 
@@ -710,6 +711,25 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         int f = modelo.getRowCount() - 1;
         for (; f >= 0; f--) {
             modelo.removeRow(f);
+        }
+
+    }
+    
+    private void actualizarReservas() { //Cambia a "ocupadas" las habitaciones con reserva del dia
+        List<ReservaHuesped> listareserva = new ArrayList<>();
+        List<Habitacion> listahab = new ArrayList<>();
+
+        listahab = habD.listarHabitaciones();
+        listareserva = rd.buscarReservasXfecha(LocalDate.now(), LocalDate.now());
+
+        rd.finReserva();
+
+        for (Habitacion hab : listahab) {
+            habD.modificarDisponibilidad(hab.getNroHabitacion(), hab.getPiso(), false);
+        }
+
+        for (ReservaHuesped reserva : listareserva) {
+            habD.modificarDisponibilidad(reserva.getIdHabitacion().getNroHabitacion(), reserva.getIdHabitacion().getPiso(), true);
         }
 
     }

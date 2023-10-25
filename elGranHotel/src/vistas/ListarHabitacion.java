@@ -220,7 +220,7 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
             }else{
                 ocupada = "Ocupada";
             }
-            System.out.println(ocupada);
+            
             modelo.addRow(new Object[]{
                 hab.getPiso(),
                 hab.getNroHabitacion(),

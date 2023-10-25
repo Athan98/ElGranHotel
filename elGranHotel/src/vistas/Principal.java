@@ -24,7 +24,7 @@ import javax.swing.SwingUtilities;
 public class Principal extends javax.swing.JFrame {
 
     private Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
-    private Habitacion_data hd = new Habitacion_data(con);
+    private Habitacion_data habd = new Habitacion_data(con);
     private Reserva_data rd = new Reserva_data(con);
 
     public Principal() {
@@ -356,17 +356,17 @@ public class Principal extends javax.swing.JFrame {
         List<ReservaHuesped> listareserva = new ArrayList<>();
         List<Habitacion> listahab = new ArrayList<>();
 
-        listahab = hd.listarHabitaciones();
+        listahab = habd.listarHabitaciones();
         listareserva = rd.buscarReservasXfecha(LocalDate.now(), LocalDate.now());
 
         rd.finReserva();
 
         for (Habitacion hab : listahab) {
-            hd.modificarDisponibilidad(hab.getNroHabitacion(), hab.getPiso(), false);
+            habd.modificarDisponibilidad(hab.getNroHabitacion(), hab.getPiso(), false);
         }
 
         for (ReservaHuesped reserva : listareserva) {
-            hd.modificarDisponibilidad(reserva.getIdHabitacion().getNroHabitacion(), reserva.getIdHabitacion().getPiso(), true);
+            habd.modificarDisponibilidad(reserva.getIdHabitacion().getNroHabitacion(), reserva.getIdHabitacion().getPiso(), true);
         }
 
     }

@@ -620,6 +620,8 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         }
         actualizarReservas();
         borrarFilas(modeloR);
+        
+        llenarTablas(Principal.modeloCI,Principal.modeloCO);
 
 
     }//GEN-LAST:event_jbReservarActionPerformed
@@ -715,6 +717,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
 
     }
     
+<<<<<<< Updated upstream
     private void actualizarReservas() { //Cambia a "ocupadas" las habitaciones con reserva del dia
         List<ReservaHuesped> listareserva = new ArrayList<>();
         List<Habitacion> listahab = new ArrayList<>();
@@ -733,5 +736,38 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         }
 
     }
+=======
+    public void llenarTablas(DefaultTableModel modeloCI, DefaultTableModel modeloCO) {
+
+        borrarFilas(modeloCO);
+        borrarFilas(modeloCI);
+
+        List<ReservaHuesped> listaReservas = rd.buscarReservasXfecha(LocalDate.now(), LocalDate.now());
+
+        for (ReservaHuesped rh : listaReservas) {
+            if (rh.getFechaIngreso().compareTo(LocalDate.now()) == 0) {
+                modeloCI.addRow(new Object[]{
+                    rh.getFechaIngreso(),
+                    rh.getIdHuesped().getNombre(),
+                    rh.getIdHuesped().getTelefono(),
+                    rh.getIdHabitacion().getNroHabitacion(),
+                    rh.getIdHabitacion().getPiso()
+
+                });
+            } else if (rh.getFechaSalida().compareTo(LocalDate.now()) == 0) {
+
+                modeloCO.addRow(new Object[]{
+                    rh.getFechaIngreso(),
+                    rh.getIdHuesped().getNombre(),
+                    rh.getIdHuesped().getTelefono(),
+                    rh.getIdHabitacion().getNroHabitacion(),
+                    rh.getIdHabitacion().getPiso()
+                });
+            }
+        }
+
+    }
+    
+>>>>>>> Stashed changes
 
 }

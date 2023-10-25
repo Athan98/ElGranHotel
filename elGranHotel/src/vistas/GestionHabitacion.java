@@ -54,6 +54,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jtCantCama = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jrbEstado = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jbAgregar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
@@ -166,7 +167,9 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         jLabel7.setText("Tipo de cama:");
 
         jrbEstado.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jrbEstado.setText("Estado");
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setText("Estado:");
 
         javax.swing.GroupLayout jpTipoHabLayout = new javax.swing.GroupLayout(jpTipoHab);
         jpTipoHab.setLayout(jpTipoHabLayout);
@@ -176,7 +179,16 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                 .addGap(112, 112, 112)
                 .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpTipoHabLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(54, 54, 54)
+                        .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(361, Short.MAX_VALUE))
+                    .addGroup(jpTipoHabLayout.createSequentialGroup()
                         .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpTipoHabLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jrbEstado))
                             .addGroup(jpTipoHabLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -188,22 +200,14 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpTipoHabLayout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtTipoCama))
-                            .addGroup(jpTipoHabLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(jtCantHues)))
-                        .addGap(85, 85, 85))
-                    .addGroup(jpTipoHabLayout.createSequentialGroup()
-                        .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrbEstado)
+                                .addComponent(jtCantHues))
                             .addGroup(jpTipoHabLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(54, 54, 54)
-                                .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtTipoCama)))
+                        .addGap(85, 85, 85))))
         );
         jpTipoHabLayout.setVerticalGroup(
             jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,21 +216,23 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                 .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtTipoHab)
                     .addComponent(jLabel5)
-                    .addComponent(jtCantHues)
-                    .addComponent(jLabel4))
-                .addGap(50, 50, 50)
+                    .addComponent(jLabel4)
+                    .addComponent(jtCantHues))
+                .addGap(18, 18, 18)
                 .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCantCama)
                     .addComponent(jLabel7)
                     .addComponent(jtTipoCama)
                     .addComponent(jLabel6))
-                .addGap(33, 33, 33)
-                .addComponent(jrbEstado)
-                .addGap(19, 19, 19))
+                .addGap(18, 18, 18)
+                .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jrbEstado)
+                    .addComponent(jLabel8))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -288,10 +294,10 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jpUltHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpTipoHab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -403,6 +409,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbAgregar;
     private javax.swing.JButton jbBuscar;

@@ -237,7 +237,8 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
     public void cargarCombo() {
         List<TipoHabitacion> listatipo = new ArrayList<>();
         listatipo = thd.listaTipoHab();
-
+        jcbTipoHab.addItem(null);
+        
         for (TipoHabitacion tipo : listatipo) {
             jcbTipoHab.addItem(tipo);
         }

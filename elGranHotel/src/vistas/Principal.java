@@ -27,6 +27,9 @@ public class Principal extends javax.swing.JFrame {
     private Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
     private Habitacion_data habd = new Habitacion_data(con);
     private Reserva_data rd = new Reserva_data(con);
+    private Reserva_Vista RV = new Reserva_Vista();
+    private Huesped_vista HV = new Huesped_vista();
+    private Habitacion_vista HABV = new Habitacion_vista();
 
     public static DefaultTableModel modeloCI = new DefaultTableModel() {
         @Override
@@ -45,9 +48,13 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         actualizarReservas();
         this.setExtendedState(Principal.MAXIMIZED_BOTH);
+//        centrarPaneCheck();
+//        escritorio.setBounds((escritorio.getWidth() - jpCheck.getWidth()) / 2, (escritorio.getHeight() - jpCheck.getHeight()) / 2, this.getWidth(), this.getHeight());
+//        jpCheck.setLocation((escritorio.getWidth() - jpCheck.getWidth()) / 2, (escritorio.getHeight() - jpCheck.getHeight()) / 2);
         actualizarFechaHora();
         armarCabeceraTablas();
         llenarTablas(modeloCI, modeloCO);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -61,6 +68,7 @@ public class Principal extends javax.swing.JFrame {
                 g.drawImage(image,0,0,getWidth(),getHeight(),this);
             }
         };
+        jPanel3 = new javax.swing.JPanel();
         jpCheck = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -70,8 +78,8 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtableCO = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmMenu1 = new javax.swing.JMenu();
+        jmGestionHuesped = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmGestionHab = new javax.swing.JMenuItem();
         jReservas = new javax.swing.JMenu();
@@ -81,7 +89,8 @@ public class Principal extends javax.swing.JFrame {
         setTitle("El gran hotel "
         );
 
-        escritorio.setLayout(new java.awt.GridBagLayout());
+        jPanel3.setOpaque(false);
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jpCheck.setBackground(new java.awt.Color(51, 51, 51));
         jpCheck.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -195,32 +204,47 @@ public class Principal extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 26;
         gridBagConstraints.ipady = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 22, 18);
-        escritorio.add(jpCheck, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 20, 32);
+        jPanel3.add(jpCheck, gridBagConstraints);
+
+        escritorio.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE))
+        );
 
         jMenuBar1.setBackground(new java.awt.Color(51, 51, 51));
         jMenuBar1.setBorder(null);
         jMenuBar1.setForeground(new java.awt.Color(51, 51, 51));
 
-        jMenu1.setBackground(new java.awt.Color(51, 51, 51));
-        jMenu1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu1.setForeground(new java.awt.Color(51, 51, 51));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/huespIcon.png"))); // NOI18N
-        jMenu1.setText("Huespedes");
-        jMenu1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        jmMenu1.setBackground(new java.awt.Color(51, 51, 51));
+        jmMenu1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jmMenu1.setForeground(new java.awt.Color(51, 51, 51));
+        jmMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/huespIcon.png"))); // NOI18N
+        jmMenu1.setText("Huespedes");
+        jmMenu1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
 
-        jMenuItem1.setBackground(new java.awt.Color(51, 51, 51));
-        jMenuItem1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
-        jMenuItem1.setForeground(new java.awt.Color(51, 51, 51));
-        jMenuItem1.setText("Gestión Huespedes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmGestionHuesped.setBackground(new java.awt.Color(51, 51, 51));
+        jmGestionHuesped.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
+        jmGestionHuesped.setForeground(new java.awt.Color(51, 51, 51));
+        jmGestionHuesped.setText("Gestión Huespedes");
+        jmGestionHuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmGestionHuespedActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jmMenu1.add(jmGestionHuesped);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmMenu1);
 
         jMenu2.setBackground(new java.awt.Color(51, 51, 51));
         jMenu2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -268,11 +292,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
 
         pack();
@@ -280,29 +304,65 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmGestionHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionHabActionPerformed
 
-        Habitacion_vista hab = new Habitacion_vista();
-        hab.setVisible(true);
-        escritorio.add(hab);
-        escritorio.moveToFront(hab);
-        hab.setLocation((escritorio.getWidth() - hab.getWidth()) / 2, (escritorio.getHeight() - hab.getHeight()) / 2);
+        if (!RV.isClosed() || RV.isVisible()) {
+            RV.setVisible(false);
+            escritorio.remove(RV);
+        }
+        if (!HV.isClosed() || HV.isVisible()) {
+             HV.setVisible(false);
+            escritorio.remove(HV);
+        }
+
+        escritorio.repaint();
+
+        if (!HABV.isVisible() ) {
+            HABV.setVisible(true);
+            escritorio.add(HABV);
+            escritorio.moveToFront(HABV);
+        }
+
+        HABV.setLocation((escritorio.getWidth() - HABV.getWidth()) / 2, (escritorio.getHeight() - HABV.getHeight()) / 2);
     }//GEN-LAST:event_jmGestionHabActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jmGestionHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionHuespedActionPerformed
+        
+        if (!RV.isClosed() || RV.isVisible()) {
+             RV.setVisible(false);
+            escritorio.remove(RV);
+        }
+        if (!HABV.isClosed() || HABV.isVisible()) {
+             HABV.setVisible(false);
+            escritorio.remove(HABV);
+        }
+        
+        escritorio.repaint();
+        if (!HV.isVisible()) {
+            HV.setVisible(true);
+            escritorio.add(HV);
+            escritorio.moveToFront(HV);
+        }
 
-        Huesped_vista h = new Huesped_vista();
-        h.setVisible(true);
-        escritorio.add(h);
-        escritorio.moveToFront(h);
-        h.setLocation((escritorio.getWidth() - h.getWidth()) / 2, (escritorio.getHeight() - h.getHeight()) / 2);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        HV.setLocation((escritorio.getWidth() - HV.getWidth()) / 2, (escritorio.getHeight() - HV.getHeight()) / 2);
+    }//GEN-LAST:event_jmGestionHuespedActionPerformed
 
     private void jmReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmReservasActionPerformed
 
-        Reserva_Vista rv = new Reserva_Vista();
-        rv.setVisible(true);
-        escritorio.add(rv);
-        escritorio.moveToFront(rv);
-        rv.setLocation((escritorio.getWidth() - rv.getWidth()) / 2, (escritorio.getHeight() - rv.getHeight()) / 2);
+        if (!HV.isClosed() || HV.isVisible()) {
+             HV.setVisible(false);
+            escritorio.remove(HV);
+        }
+        if (!HABV.isClosed() || HABV.isVisible()) {
+             HABV.setVisible(false);
+            escritorio.remove(HABV);
+        }
+        escritorio.repaint();
+        if (!RV.isVisible()) {
+            RV.setVisible(true);
+            escritorio.add(RV);
+            escritorio.moveToFront(RV);
+        }
+
+        RV.setLocation((escritorio.getWidth() - RV.getWidth()) / 2, (escritorio.getHeight() - RV.getHeight()) / 2);
     }//GEN-LAST:event_jmReservasActionPerformed
 
     public static void main(String args[]) {
@@ -340,16 +400,17 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JMenu jReservas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenuItem jmGestionHab;
+    private javax.swing.JMenuItem jmGestionHuesped;
+    private javax.swing.JMenu jmMenu1;
     private javax.swing.JMenuItem jmReservas;
     private javax.swing.JPanel jpCheck;
     private javax.swing.JTable jtableCI;
@@ -396,19 +457,21 @@ public class Principal extends javax.swing.JFrame {
 
     private void centrarPaneCheck() {
 
-        Dimension d = new Dimension(500, 600);
-
-        jpCheck.setPreferredSize(d);
-
-        int desktopWidth = escritorio.getWidth();
-        int desktopHeight = escritorio.getHeight();
-        int panelWidth = jpCheck.getWidth();
-        int panelHeight = jpCheck.getHeight();
-
-        int x = (desktopWidth - panelWidth) / 2;
-        int y = (desktopHeight - panelHeight) / 2;
-
-        jpCheck.setLocation(x, y);
+//        Dimension d = new Dimension(500, 600);
+//
+//        jpCheck.setPreferredSize(d);
+//
+//        int desktopWidth = escritorio.getWidth();
+//        int desktopHeight = escritorio.getHeight();
+//        int panelWidth = jpCheck.getWidth();
+//        int panelHeight = jpCheck.getHeight();
+//
+//        int x = (desktopWidth - panelWidth) / 2;
+//        int y = (desktopHeight - panelHeight) / 2;
+//
+//        jpCheck.setLocation(x, y);
+    jpCheck.setLocation((escritorio.getWidth() - jpCheck.getWidth()) / 2, (escritorio.getHeight() - jpCheck.getHeight()) / 2);
+       
     }
 
     private void armarCabeceraTablas() {

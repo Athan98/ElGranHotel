@@ -717,7 +717,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
 
     }
     
-<<<<<<< Updated upstream
+
     private void actualizarReservas() { //Cambia a "ocupadas" las habitaciones con reserva del dia
         List<ReservaHuesped> listareserva = new ArrayList<>();
         List<Habitacion> listahab = new ArrayList<>();
@@ -736,7 +736,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         }
 
     }
-=======
+
     public void llenarTablas(DefaultTableModel modeloCI, DefaultTableModel modeloCO) {
 
         borrarFilas(modeloCO);
@@ -768,6 +768,6 @@ public class CrearReserva extends javax.swing.JInternalFrame {
 
     }
     
->>>>>>> Stashed changes
+
 
 }

@@ -37,3 +37,4 @@ private.properties
 !mariadb-java-client-3.0.11.jar
 !/elGranHotel/dist/
 /elGranHotel/build/
+!poi-3.12-20150511.jar

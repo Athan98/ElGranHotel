@@ -339,8 +339,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
         } else if (jtHab.getText().isEmpty() || jtPiso.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
         } else {
-            hd.modificarHabitacion((TipoHabitacion) jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()));
-            hd.modificarDisponibilidad(Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()), jrbEstado.isSelected());
+            hd.modificarHabitacion((TipoHabitacion) jcbTipoHab.getSelectedItem(), jrbEstado.isSelected(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()));
             jtHab.setText("");
             jtPiso.setText("");
             jcbTipoHab.setSelectedIndex(-1);

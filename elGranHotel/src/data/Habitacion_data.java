@@ -118,15 +118,16 @@ public class Habitacion_data {
         return h;
     }
 
-    public void modificarHabitacion(TipoHabitacion tipo, int nro, int piso) {
+    public void modificarHabitacion(TipoHabitacion tipo, boolean estado, int nro, int piso) {
 
-        String sql = "UPDATE habitacion SET idTipoHabitacion=? WHERE nroHabitacion=? AND piso=?";
+        String sql = "UPDATE habitacion SET idTipoHabitacion=?, estado=? WHERE nroHabitacion=? AND piso=?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, tipo.getIdTipoHabitacion());
-            ps.setInt(2, nro);
-            ps.setInt(3, piso);
+            ps.setBoolean(2, estado);
+            ps.setInt(3, nro);
+            ps.setInt(4, piso);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "La habitacion ha sido actualizada");
             ps.close();

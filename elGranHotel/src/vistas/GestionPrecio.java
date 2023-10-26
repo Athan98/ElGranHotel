@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 public class GestionPrecio extends javax.swing.JInternalFrame {
-    
+
     Conexion con = new Conexion("jdbc:mariadb://localhost:3306/elgranhotel", "root", "");
     TipoHabitacion_data thd = new TipoHabitacion_data(con);
     TipoHabitacion th = new TipoHabitacion();
 
-    DefaultTableModel modelo = new DefaultTableModel(){
+    DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int fila, int col) {
             if (col == 4) {
                 return true;
@@ -27,10 +27,8 @@ public class GestionPrecio extends javax.swing.JInternalFrame {
                 return false;
             }
         }
-        
     };
-    
-    
+
     public GestionPrecio() {
         initComponents();
         cargarCabeceras();
@@ -127,20 +125,26 @@ public class GestionPrecio extends javax.swing.JInternalFrame {
         List<TipoHabitacion> listatipos = new ArrayList<>();
         listatipos = thd.listaTipoHab();
         double precio;
-        
-        for (int i = 0; i < listatipos.size(); i++) {
-            precio = Double.parseDouble(jtPrecios.getValueAt(i, 4).toString());
-            if(precio < 0){
-                JOptionPane.showMessageDialog(null, "Ingrese un monto válido");
-                break;
-            }else{
-                thd.actualizarPrecio(precio, i+1);
-                if (i==listatipos.size()-1) {
-                    JOptionPane.showMessageDialog(null, "Se han actualizado los precios");
+        try {
+            for (int i = 0; i < listatipos.size(); i++) {
+                precio = Double.parseDouble(jtPrecios.getValueAt(i, 4).toString());
+
+                if (precio < 0) {
+                    JOptionPane.showMessageDialog(null, "Ingrese un monto válido");
+                    break;
+
+                } else {
+                    thd.actualizarPrecio(precio, i + 1);
+                    if (i == listatipos.size() - 1) {
+                        JOptionPane.showMessageDialog(null, "Se han actualizado los precios");
+                    }
                 }
-            }            
+
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un monto válido");
         }
-        
+
     }//GEN-LAST:event_jbActualizarActionPerformed
 
 
@@ -152,20 +156,20 @@ public class GestionPrecio extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtPrecios;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarCabeceras(){
+    public void cargarCabeceras() {
         modelo.addColumn("Tipo");
         modelo.addColumn("Cant. Personas");
         modelo.addColumn("Cant. Camas");
         modelo.addColumn("Tipo Cama");
-        modelo.addColumn("Precio por Noche");  
+        modelo.addColumn("Precio por Noche");
 
         jtPrecios.setModel(modelo);
     }
-    
-    public void cargartabla(){
+
+    public void cargartabla() {
         List<TipoHabitacion> listatipos = new ArrayList<>();
         listatipos = thd.listaTipoHab();
-        
+
         for (TipoHabitacion tipo : listatipos) {
             modelo.addRow(new Object[]{
                 tipo.getTipo(),

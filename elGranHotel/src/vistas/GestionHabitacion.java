@@ -229,7 +229,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
                     .addComponent(jtTipoCama)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpTipoHabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jrbEstado)
                     .addComponent(jLabel8))
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -340,7 +340,7 @@ public class GestionHabitacion extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
         } else {
             hd.modificarHabitacion((TipoHabitacion) jcbTipoHab.getSelectedItem(), Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()));
-
+            hd.modificarDisponibilidad(Integer.parseInt(jtHab.getText()), Integer.parseInt(jtPiso.getText()), jrbEstado.isSelected());
             jtHab.setText("");
             jtPiso.setText("");
             jcbTipoHab.setSelectedIndex(-1);

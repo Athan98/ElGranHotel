@@ -18,7 +18,7 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
     private TipoHabitacion_data thd = new TipoHabitacion_data(con);
 
     DefaultTableModel modelo = new DefaultTableModel() {
-        public boolean IsCellEditable(int fila, int col) {
+        public boolean isCellEditable(int fila, int col) {
             return false;
         }
     };
@@ -42,6 +42,7 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jcbTipoHab = new javax.swing.JComboBox<>();
+        jbLimpiar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtHabitaciones = new javax.swing.JTable();
@@ -60,6 +61,14 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
             }
         });
 
+        jbLimpiar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jbLimpiar.setText("Limpiar Filtro");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -69,16 +78,23 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(54, 54, 54)
                 .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jbLimpiar)
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jcbTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbLimpiar)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -148,7 +164,7 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -183,6 +199,10 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
         jtCantidad.setText(""+jtHabitaciones.getRowCount());
     }//GEN-LAST:event_jcbTipoHabItemStateChanged
 
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        jcbTipoHab.setSelectedIndex(-1);
+    }//GEN-LAST:event_jbLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -190,6 +210,7 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbLimpiar;
     private javax.swing.JComboBox<TipoHabitacion> jcbTipoHab;
     private javax.swing.JLabel jtCantidad;
     private javax.swing.JTable jtHabitaciones;
@@ -237,7 +258,6 @@ public class ListarHabitacion extends javax.swing.JInternalFrame {
     public void cargarCombo() {
         List<TipoHabitacion> listatipo = new ArrayList<>();
         listatipo = thd.listaTipoHab();
-        jcbTipoHab.addItem(null);
         
         for (TipoHabitacion tipo : listatipo) {
             jcbTipoHab.addItem(tipo);

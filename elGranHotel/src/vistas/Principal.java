@@ -48,9 +48,6 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         actualizarReservas();
         this.setExtendedState(Principal.MAXIMIZED_BOTH);
-//        centrarPaneCheck();
-//        escritorio.setBounds((escritorio.getWidth() - jpCheck.getWidth()) / 2, (escritorio.getHeight() - jpCheck.getHeight()) / 2, this.getWidth(), this.getHeight());
-//        jpCheck.setLocation((escritorio.getWidth() - jpCheck.getWidth()) / 2, (escritorio.getHeight() - jpCheck.getHeight()) / 2);
         actualizarFechaHora();
         armarCabeceraTablas();
         llenarTablas(modeloCI, modeloCO);
@@ -320,7 +317,7 @@ public class Principal extends javax.swing.JFrame {
             escritorio.add(HABV);
             escritorio.moveToFront(HABV);
         }
-
+        //CENTRAR VENTANA
         HABV.setLocation((escritorio.getWidth() - HABV.getWidth()) / 2, (escritorio.getHeight() - HABV.getHeight()) / 2);
     }//GEN-LAST:event_jmGestionHabActionPerformed
 
@@ -341,7 +338,7 @@ public class Principal extends javax.swing.JFrame {
             escritorio.add(HV);
             escritorio.moveToFront(HV);
         }
-
+        //CENTRAR VENTANA
         HV.setLocation((escritorio.getWidth() - HV.getWidth()) / 2, (escritorio.getHeight() - HV.getHeight()) / 2);
     }//GEN-LAST:event_jmGestionHuespedActionPerformed
 
@@ -361,7 +358,7 @@ public class Principal extends javax.swing.JFrame {
             escritorio.add(RV);
             escritorio.moveToFront(RV);
         }
-
+        //CENTRAR VENTANA
         RV.setLocation((escritorio.getWidth() - RV.getWidth()) / 2, (escritorio.getHeight() - RV.getHeight()) / 2);
     }//GEN-LAST:event_jmReservasActionPerformed
 
@@ -455,24 +452,6 @@ public class Principal extends javax.swing.JFrame {
         reloj.start();
     }
 
-    private void centrarPaneCheck() {
-
-//        Dimension d = new Dimension(500, 600);
-//
-//        jpCheck.setPreferredSize(d);
-//
-//        int desktopWidth = escritorio.getWidth();
-//        int desktopHeight = escritorio.getHeight();
-//        int panelWidth = jpCheck.getWidth();
-//        int panelHeight = jpCheck.getHeight();
-//
-//        int x = (desktopWidth - panelWidth) / 2;
-//        int y = (desktopHeight - panelHeight) / 2;
-//
-//        jpCheck.setLocation(x, y);
-    jpCheck.setLocation((escritorio.getWidth() - jpCheck.getWidth()) / 2, (escritorio.getHeight() - jpCheck.getHeight()) / 2);
-       
-    }
 
     private void armarCabeceraTablas() {
         modeloCI.addColumn("Fecha");

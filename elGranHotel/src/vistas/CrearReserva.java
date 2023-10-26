@@ -494,10 +494,10 @@ public class CrearReserva extends javax.swing.JInternalFrame {
                 habitacion.setIdTipoHabitacion(tipo);
 
                 habSelec.add(habitacion);
-                modeloH.removeRow(i);                                           // Borro la fila de la tabla habitaciones
+                modeloH.removeRow(i);       // Borro la fila de la tabla habitaciones
             }
         }
-        // Cargo tabla de reservas confirmadas
+                                            // Cargo tabla de reservas confirmadas
         for (int x = 0; x <= habSelec.size() - 1; x++) {
             PrecioTotal = PrecioTotal + habSelec.get(x).getIdTipoHabitacion().getPrecioPorNoche() * dias;
             modeloR.addRow(new Object[]{h.getDni(), ingreso, salida,
@@ -523,8 +523,8 @@ public class CrearReserva extends javax.swing.JInternalFrame {
         borrarFilas(modeloH);
         try {
             int personas = Integer.parseInt(jtCantPersonas.getText());
-            //Validaciones fecha y cant personas
-            if (personas == 0 || jdIngreso == null || jdSalida == null || jdIngreso.getDate().before(Date.valueOf(LocalDate.now())) || jdSalida.getDate().before(jdIngreso.getDate())) {
+                                                                                //Validaciones fecha y cant personas
+            if (personas == 0 || jdIngreso.getDate()==null || jdSalida.getDate() == null || jdIngreso.getDate().before(Date.valueOf(LocalDate.now())) || jdSalida.getDate().before(jdIngreso.getDate())) {
                 JOptionPane.showMessageDialog(null, "Ingrese datos válidos.");
 
             } else {
@@ -591,7 +591,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
 
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error de formato");
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
 
         }
 

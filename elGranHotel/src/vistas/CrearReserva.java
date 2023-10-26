@@ -552,7 +552,7 @@ public class CrearReserva extends javax.swing.JInternalFrame {
                         break;
                     case 3:
                         lista.clear();
-                        lista = habD.listarPorCategoria(tipos.get(3));                     // Triples
+                        lista = habD.listarPorCategoria(tipos.get(3));          // Triples
                         break;
 
                 }
@@ -561,11 +561,12 @@ public class CrearReserva extends javax.swing.JInternalFrame {
 
                 for (int i = lista.size() - 1; i >= 0; i--) {
                     boolean ocupada = false;
+                    
                     Habitacion hab = lista.get(i);
 
                     for (ReservaHuesped reserva : reservas) {
 
-                        if (reserva.getIdHabitacion().getIdHabitacion() == hab.getIdHabitacion()) {
+                        if (reserva.getIdHabitacion().getIdHabitacion() == hab.getIdHabitacion() || hab.isEstado()==false) {
                             ocupada = true;
                             break;
                         }

@@ -11,6 +11,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 import javax.swing.JOptionPane;
@@ -207,5 +209,60 @@ public class Reserva_data {
            
         }
         return reservas;
+    }
+    
+    public List listarReservas () {
+       
+        List<ReservaHuesped> reservas = new ArrayList();
+        try {
+            
+            
+            String sql = "SELECT * FROM reserva r JOIN huesped h ON(r.idHuesped=h.idHuesped) JOIN habitacion hab ON (r.idHabitacion=hab.idHabitacion) JOIN tipohabitacion tp ON(hab.idTipoHabitacion = tp.idTipoHabitacion)";
+            
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                ReservaHuesped r = new ReservaHuesped();
+                Huesped huesped = new Huesped();
+                Habitacion hab = new Habitacion();
+                TipoHabitacion tipo = new TipoHabitacion();
+
+                r.setIdReserva(rs.getInt("idReserva"));
+                                                        
+                huesped.setApellido(rs.getString("apellido"));
+                huesped.setNombre(rs.getString("nombre"));
+                huesped.setCorreo(rs.getString("correo"));
+                huesped.setDireccion(rs.getString("direccion"));
+                huesped.setDni(rs.getString("dni"));
+                huesped.setTelefono(rs.getString("telefono"));
+                huesped.setIdHuesped(rs.getInt("idHuesped"));
+                r.setIdHuesped(huesped);
+
+                hab.setIdHabitacion(rs.getInt("idHabitacion"));
+                hab.setNroHabitacion(rs.getInt("nroHabitacion"));
+                hab.setPiso(rs.getInt("piso"));
+                hab.setOcupada(rs.getBoolean("ocupada"));
+                tipo.setCantidadCamas(rs.getInt("cantidadCamas"));
+                tipo.setCantidadPersonas(rs.getInt("cantidadPersonas"));
+                tipo.setIdTipoHabitacion(rs.getInt("idTipoHabitacion"));
+                tipo.setPrecioPorNoche(rs.getDouble("precioPorNoche"));
+                tipo.setTipo(rs.getString("Tipo"));
+                tipo.setTipoCamas(rs.getString("tipoCamas"));
+                hab.setIdTipoHabitacion(tipo);
+                r.setIdHabitacion(hab);
+
+                r.setFechaIngreso(rs.getDate("fechaIngreso").toLocalDate());
+                r.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
+                r.setMonto(rs.getDouble("monto"));
+                r.setEstado(rs.getBoolean("estado"));
+
+                reservas.add(r);
+            }
+            
+        } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Error sentencia SQL");
+        }
+         
+         return reservas;
     }
 }

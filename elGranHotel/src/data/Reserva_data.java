@@ -47,8 +47,7 @@ public class Reserva_data {
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    reserva.setIdReserva(rs.getInt(1));
-                    JOptionPane.showMessageDialog(null, "La reserva se realizó correctamente");
+                    reserva.setIdReserva(rs.getInt(1));                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al obtener el ID");
                 }
@@ -152,6 +151,10 @@ public class Reserva_data {
     }
     
     public List buscarReservasXfecha(LocalDate ingreso, LocalDate egreso){
+        ReservaHuesped r;
+        Huesped huesped;
+        Habitacion hab;
+        TipoHabitacion tipo;
         List<ReservaHuesped> reservas = new ArrayList();
         try {
             String sql = "SELECT * FROM reserva r JOIN huesped h ON(r.idHuesped=h.idHuesped) JOIN habitacion hab ON (r.idHabitacion=hab.idHabitacion) JOIN tipohabitacion tp ON(hab.idTipoHabitacion = tp.idTipoHabitacion) WHERE (? BETWEEN r.fechaIngreso AND r.fechaSalida) OR  ( ? BETWEEN r.fechaIngreso AND r.fechaSalida) OR (r.fechaIngreso BETWEEN ? AND ?) OR (r.fechaSalida BETWEEN ? AND ?) ORDER BY hab.piso";
@@ -166,10 +169,10 @@ public class Reserva_data {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                ReservaHuesped r = new ReservaHuesped();
-                Huesped huesped = new Huesped();
-                Habitacion hab = new Habitacion();
-                TipoHabitacion tipo = new TipoHabitacion();
+                r = new ReservaHuesped();
+                huesped = new Huesped();
+                hab = new Habitacion();
+                tipo = new TipoHabitacion();
 
                 r.setIdReserva(rs.getInt("idReserva"));
                                                         
@@ -217,7 +220,7 @@ public class Reserva_data {
         try {
             
             
-            String sql = "SELECT * FROM reserva r JOIN huesped h ON(r.idHuesped=h.idHuesped) JOIN habitacion hab ON (r.idHabitacion=hab.idHabitacion) JOIN tipohabitacion tp ON(hab.idTipoHabitacion = tp.idTipoHabitacion)";
+            String sql = "SELECT * FROM reserva r JOIN huesped h ON(r.idHuesped=h.idHuesped) JOIN habitacion hab ON (r.idHabitacion=hab.idHabitacion) JOIN tipohabitacion tp ON(hab.idTipoHabitacion = tp.idTipoHabitacion) WHERE r.estado=true";
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();

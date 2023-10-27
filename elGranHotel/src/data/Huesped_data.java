@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 public class Huesped_data {
 
     private Connection conexion = null;
-    private Huesped h = new Huesped();
 
     public Huesped_data(Conexion con) {
         this.conexion = con.buscarConexion();
@@ -55,6 +54,7 @@ public class Huesped_data {
 
 
     public List listarHuespedes() {
+        Huesped h = new Huesped();
         List<Huesped> huespedes = new ArrayList<>();
         String sql = "SELECT * FROM huesped";
 
@@ -82,6 +82,7 @@ public class Huesped_data {
     }
 
     public Huesped buscarHuespedPorDni(String dni) {
+        Huesped h = new Huesped();
         String sql = "SELECT * FROM huesped WHERE dni=?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);

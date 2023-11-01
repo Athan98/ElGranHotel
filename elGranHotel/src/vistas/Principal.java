@@ -10,7 +10,6 @@ import data.Habitacion_data;
 import data.Reserva_data;
 import entidades.ReservaHuesped;
 import entidades.Habitacion;
-import java.awt.Dimension;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,8 +80,6 @@ public class Principal extends javax.swing.JFrame {
         jmGestionHab = new javax.swing.JMenuItem();
         jReservas = new javax.swing.JMenu();
         jmReservas = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("El gran hotel "
@@ -285,24 +282,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jReservas);
 
-        jMenu1.setBackground(new java.awt.Color(51, 51, 51));
-        jMenu1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu1.setForeground(new java.awt.Color(51, 51, 51));
-        jMenu1.setText("Funcionalidades del sistema");
-        jMenu1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 12)); // NOI18N
-        jMenuItem1.setText("Salir");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu1);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -382,10 +361,6 @@ public class Principal extends javax.swing.JFrame {
         RV.setLocation((escritorio.getWidth() - RV.getWidth()) / 2, (escritorio.getHeight() - RV.getHeight()) / 2);
     }//GEN-LAST:event_jmReservasActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -421,10 +396,8 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
